@@ -19,7 +19,7 @@ const getMindmaps = (request, response) => {
 }
 
 const addMindmap = (request, response) => {
-  const {author, title} = request.body
+  const {center, topic, subtopic} = request.body
 
   pool.query(
     'INSERT INTO mindmaps (center, topic, subtopic) VALUES ($1, $2, $3)',
