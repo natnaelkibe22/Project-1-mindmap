@@ -19,6 +19,8 @@
 <input type="file" onchange="load_file(this);"/>
 <button onclick="save_nodetree();">nodetree</button>
 <button onclick="replay();">replay</button>
+<button id = "zoom-in" onclick="zoomIn();">zoomIn</button>
+<button id = "zoom-out" onclick="zoomOut();">zoomOut</button>
 <div id="jsmind_container"></div>
 <script type="text/javascript" src="../js/jsmind.js"></script>
 <script type="text/javascript" src="../js/jsmind.draggable.js"></script>
@@ -106,6 +108,25 @@
             shell.replay();
         }
     }
+
+    var zoominButton = document.getElementById("zoom-in");
+    var zoomOutButton = document.getElementById("zoom-out");
+
+    function zoomIn() {
+        if (_jm.view.zoomIn()) {
+            zoomOutButton.disabled = false;
+        } else {
+            zoominButton.disabled = true;
+        };
+    };
+
+    function zoomOut() {
+        if (_jm.view.zoomOut()) {
+            zoominButton.disabled = false;
+        } else {
+            zoomOutButton.disabled = true;
+        };
+    };
 
     load_jsmind();
 </script>
