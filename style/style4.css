@@ -198,7 +198,18 @@ a.article, a.article:hover {
     min-height: 100vh;
     transition: all 0.3s;
 }
-
+#jsmind_container{
+    float:middle;
+    width: 800px;
+    height: 600px;
+    border:solid 1px #ccc;
+    background:#f4f4f4;
+}
+#zoom-inline{
+position: absolute;
+right:    0;
+bottom:   0;
+}
 
 /* ---------------------------------------------------
     MEDIAQUERIES

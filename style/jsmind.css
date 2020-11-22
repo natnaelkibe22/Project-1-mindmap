@@ -263,6 +263,20 @@ i,
 span {
     display: inline-block;
 }
+.button {
+    background-color:transparent;
+    border: none;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+  }
+
+
+.button-zoom {
+    border-radius: 50%;
+}
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
