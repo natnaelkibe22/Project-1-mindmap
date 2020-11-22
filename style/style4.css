@@ -200,7 +200,7 @@ a.article, a.article:hover {
 }
 #jsmind_container{
     float:middle;
-    width: 800px;
+    width: 1000px;
     height: 600px;
     border:solid 1px #ccc;
     background:#f4f4f4;
@@ -210,6 +210,10 @@ position: absolute;
 right:    0;
 bottom:   0;
 }
+.sidebar-button{
+    padding: 80px 30px;
+    height:200px;width:200px
+    }
 
 /* ---------------------------------------------------
     MEDIAQUERIES

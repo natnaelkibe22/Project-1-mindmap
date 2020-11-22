@@ -1,131 +1,13 @@
 <!doctype html>
 <html>
 <head>
-    <div  class="jsmind-inner">
-        <div class="sidenav">
-        <input type="file" onchange="load_file(this);"/>
-
-        <button onclick="save_nodetree();">nodetree</button>
-        <button onclick="replay();">replay</button>
-        <button onclick="share_node();">share</button>
-        <button onclick="add_card();"><span>add node</span></button>
-        <button onclick="replay();">screenshot</button>
-        <button id = "zoom-in" onclick="zoomIn();">zoomIn</button>
-        <button id = "zoom-out" onclick="zoomOut();">zoomOut</button>
-          </div>
-      </div>
-      <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>Bootstrap Sidebar</h3>
-                <strong>MENU</strong>
-            </div>
-
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-home"></i>
-                        Home
-                    </a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-briefcase"></i>
-                        About
-                    </a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-copy"></i>
-                        Pages
-                    </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-image"></i>
-                        Portfolio
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-question"></i>
-                        FAQ
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-paper-plane"></i>
-                        Contact
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- Page Content  -->
-        <div id="content">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                        <span>Toggle Sidebar</span>
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-    </div>
-      <!-- Page content -->
-      <div class="main">
-        ...
-      </div>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>jsMind</title>
     <link type="text/css" rel="stylesheet" href="../style/jsmind.css" />
     <style type="text/css">
         #jsmind_container{
-            width:70%;
+            width:100%;
             height: 100%;
             border:solid 1px #ccc;
             /*background:#f4f4f4;*/
@@ -134,6 +16,11 @@
     </style>
 </head>
 <body>
+<input type="file" onchange="load_file(this);"/>
+<button onclick="save_nodetree();">nodetree</button>
+<button onclick="replay();">replay</button>
+<button id = "zoom-in" onclick="zoomIn();">zoomIn</button>
+<button id = "zoom-out" onclick="zoomOut();">zoomOut</button>
 <div id="jsmind_container"></div>
 <script type="text/javascript" src="../js/jsmind.js"></script>
 <script type="text/javascript" src="../js/jsmind.draggable.js"></script>
@@ -149,7 +36,30 @@
             },
             format:'node_array',
             data:[
-                {"id":"root", "isroot":true, "topic":"Topic"}]
+                {"id":"root", "isroot":true, "topic":"Topic"},
+
+                {"id":"parent1", "parentid":"root", "topic":"parent1"},
+                    {"id":"node1", "parentid":"parent1", "topic":"node1"},
+                         {"id":"child1", "parentid":"node1", "topic":"child1"},
+                         {"id":"child2", "parentid":"node2", "topic":"child2"},
+                         {"id":"child3", "parentid":"node3", "topic":"child3"},
+
+                {"id":"parent2", "parentid":"root", "topic":"parent2"},
+                        {"id":"node2", "parentid":"parent2", "topic":"node2"},
+                                {"id":"child4", "parentid":"node2", "topic":"child4"},
+                                {"id":"child5", "parentid":"node2", "topic":"child5"},
+                                {"id":"child6", "parentid":"node2", "topic":"child6"},
+                {"id":"node3", "parentid":"parent2", "topic":"node3"},
+                                {"id":"child7", "parentid":"node3", "topic":"child7"},
+                                {"id":"child8", "parentid":"node3", "topic":"child8"},
+                                {"id":"child7", "parentid":"node3", "topic":"child9"},
+                {"id":"node4", "parentid":"parent2", "topic":"node4"},
+
+
+                {"id":"parent3", "parentid":"root", "topic":"parent3"},
+                {"id":"node1", "parentid":"parent2", "topic":"node1"},
+
+            ]
         };
         var options = {
             container:'jsmind_container',

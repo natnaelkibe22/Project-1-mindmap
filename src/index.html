@@ -19,7 +19,7 @@
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <h3>Menu</h3>
-                    <strong>MM</strongs>
+                    <strong>JSM</strong>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -29,7 +29,7 @@
                             Home
                         </a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li><a href="#">Home 1</a></li>
+                            <li><a href="#"><button class = "button sidebar-button" >open example</button></a></li>
                             <li><a href="#">Home 2</a></li>
                             <li><a href="#">Home 3</a></li>
                         </ul>
@@ -110,41 +110,28 @@
                 </nav>
                 
                 <div class="line"></div>
-                <div id="jsmind_container">
-                     <div class="jsmind-inner">
-                     <canvas class="jsmind" width="750" height="500"></canvas>
-                    <jmnodes class="theme-greensea" style="width: 750px; height: 500px;">
-                    <jmnode class="btn-info" nodeid="root" style="visibility: visible; left: 395.5px; top: 277px;">Topic</jmnode>
-                    <jmnode style="visibility: hidden; z-index: 3; cursor: move; opacity: 0.7;">
-                    
-                    </jmnode></jmnodes>
-                <canvas width="750" height="500"> 
-                </canvas>
+                <div id="jsmind_container"> </div>
+
                 <div class="button" id = "zoom-inline">
                      <ul>
-                        <button class="btn"><i class="glyphicon glyphicon-plus"></i></button>
+                        <button id = "zoom-in" onclick= "zoomIn();" class="btn">
+                            <i id = "zoom-in" onclick= "zoomIn();" class="glyphicon glyphicon-plus">
+                            </i></button>
                      </ul>
                      <ul>
-                        <button class = "btn"><i class="glyphicon glyphicon-minus"></i></button>
+                        <button id = "zoom-in" onclick= "zoomOut();" class="btn" >
+                            <i id = "zoom-in" onclick= "zoomOut();" class="glyphicon glyphicon-minus">
+                          </i></button>
                      </ul>  
-                        
                 </div>
-                </div>
-            </div>
-            </div>
-        </div>
     </div>
         <!-- jQuery CDN -->
          <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
          <!-- Bootstrap Js CDN -->
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-         <script src="../features/jsmind-features.js"></script>
-         <script type="text/javascript">
-             $(document).ready(function () {
-                 $('#sidebarCollapse').on('click', function () {
-                     $('#sidebar').toggleClass('active');
-                 });
-             });
-         </script>
+         <script type="text/javascript" src="../js/jsmind.js"></script>
+         <script type="text/javascript" src="../js/jsmind.draggable.js"></script>
+         <script type="text/javascript" src="../features/jsmind.shell.js"></script>
+         <script type="text/javascript" src="../features/jsmind-features.js"></script>
     </body>
 </html>
