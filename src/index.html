@@ -24,58 +24,66 @@
 
                 <ul class="list-unstyled components">
                     <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                            <i class="glyphicon glyphicon-home"></i>
-                            Home
+                        <a href="#nodeSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-edit"></i> Edit
                         </a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li><a href="#"><button class = "button sidebar-button" >open example</button></a></li>
-                            <li><a href="#">Home 2</a></li>
-                            <li><a href="#">Home 3</a></li>
+                        <ul class="collapse list-unstyled" id="nodeSubmenu">
+                            <li><a onclick="add_node();" href="#">Add a node</a></li>
+                            <li><a onclick="add_image_node();" href="#"> Add a image node</a></li>
+                            <li><a onclick="remove_node();" href="#">remove node</a></li>
+                            <li><a onclick="change_text_font();" href="#">change font</a></li>
+                            <li><a onclick="change_text_color();" href="#">Default color</a></li>
+                            <li><a onclick="change_background_color();" href="#">change node background</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="btn-group dropright" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <i class="glyphicon glyphicon-pencil"></i>
+                           Theme
+                        </a>
+                   
+                    <!-- 
+                        <ul class="dropdown-menu" >
+                          <a value="" class="dropdown-item" href="#">Default</a>
+                          <a  value="asphalt" class="dropdown-item" href="#">Asphalt</a>
+                          <a class="dropdown-item" href="#">Pumpkin</a>
+                          <a class="dropdown-item" href="#">Greensea</a>
+                          <a class="dropdown-item" href="#">Clouds</a>
+                          <a class="dropdown-item" href="#">Danger</a>
+                        </ul> -->
+
+                        <ul class="dropdown-menu"  onchange="set_theme(this.value);">
+                            <a class="dropdown-item" value="">default</a>
+                            <a class="dropdown-item" value="primary">primary</a>
+                            <a class="dropdown-item" value="warning">warning</a>
+                            <a class="dropdown-item" value="danger">danger</a>
+                            <a class="dropdown-item" value="success">success</a>
+                            <a class="dropdown-item" value="info">info</a>
+                            <a class="dropdown-item" value="greensea" selected="selected">greensea</a>
+                            <a class="dropdown-item" value="nephrite">nephrite</a>
+                            <a class="dropdown-item" value="belizehole">belizehole</a>
+                            <a class="dropdown-item" value="wisteria">wisteria</a>
+                            <a class="dropdown-item" value="asphalt">asphalt</a>
+                            <a class="dropdown-item" value="orange">orange</a>
+                            <a class="dropdown-item" value="pumpkin">pumpkin</a>
+                            <a class="dropdown-item" value="pomegranate">pomegranate</a>
+                            <a class="dropdown-item" value="clouds">clouds</a>
+                            <a class="dropdown-item" value="asbestos">asbestos</a>
                         </ul>
                     </li>
                     <li class="active">
-                        <a href="#openfile" data-toggle="collapse" aria-expanded="false">
-                            <i class="glyphicon glyphicon-open"></i> Open</a>
-                        <ul class="collapse list-unstyled" id="openfile">
-                            <li><a href="#">Open 1</a></li>
-                            <li><a href="#">Home 2</a></li>
-                            <li><a href="#">Home 3</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-briefcase"></i>
-                            About
+                        <a href="#adjustSubmenu" data-toggle="collapse" aria-expanded="false">
+                           <i class="glyphicon glyphicon-adjust"></i>
+                           Adjust
                         </a>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
-                            <i class="glyphicon glyphicon-duplicate"></i>
-                            Pages
-                        </a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li><a href="#">Page 1</a></li>
-                            <li><a href="#">Page 2</a></li>
-                            <li><a href="#">Page 3</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-link"></i>
-                            Portfolio
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-paperclip"></i>
-                            FAQ
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-send"></i>
-                            Contact
-                        </a>
-                    </li>
+                        <ul class="collapse list-unstyled" id="adjustSubmenu">
+                            <li><a onclick="expand();" href="#">Expand node</a></li>
+                            <li><a onclick="collapse();" href="#">Collapse node</a></li>
+                            <li><a onclick="toggle();" href="#">Toggle node</a></li>
+                            <li><a onclick="expand_all();" href="#">Expand all</a></li>
+                            <li><a onclick="collapse_all();" href="#">Collapse all</a></li>
+                        </ul>                    
+                    </li> 
                 </ul>
 
                 <ul class="list-unstyled CTAs">
@@ -111,7 +119,7 @@
                 
                 <div class="line"></div>
                 <div id="jsmind_container"> </div>
-
+               
                 <div class="button" id = "zoom-inline">
                      <ul>
                         <button id = "zoom-in" onclick= "zoomIn();" class="btn">
@@ -124,6 +132,7 @@
                           </i></button>
                      </ul>  
                 </div>
+         <input style="visibility: hidden;" class="file" type="file" id = "image-chooser" accept="image/*"/>
     </div>
         <!-- jQuery CDN -->
          <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -133,5 +142,6 @@
          <script type="text/javascript" src="../js/jsmind.draggable.js"></script>
          <script type="text/javascript" src="../features/jsmind.shell.js"></script>
          <script type="text/javascript" src="../features/jsmind-features.js"></script>
+         <script type="text/javascript" src="../js/jsmind.screenshot.js"></script>
     </body>
 </html>
