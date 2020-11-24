@@ -342,4 +342,10 @@ function prompt_info(msg){
     alert(msg);
 }
 
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+});
+
 open_empty();

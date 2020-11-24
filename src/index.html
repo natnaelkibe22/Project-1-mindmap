@@ -9,6 +9,7 @@
 
          <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="../style/jsmind-navbar.css">
         <link rel="stylesheet" href="../style/jsmind.css">
@@ -41,20 +42,25 @@
                            <i class="glyphicon glyphicon-pencil"></i>
                            Theme
                         </a>
-                   
-                    <!-- 
-                        <ul class="dropdown-menu" >
-                          <a value="" class="dropdown-item" href="#">Default</a>
-                          <a  value="asphalt" class="dropdown-item" href="#">Asphalt</a>
-                          <a class="dropdown-item" href="#">Pumpkin</a>
-                          <a class="dropdown-item" href="#">Greensea</a>
-                          <a class="dropdown-item" href="#">Clouds</a>
-                          <a class="dropdown-item" href="#">Danger</a>
-                        </ul> -->
-
-                        <ul class="dropdown-menu"  onchange="set_theme(this.value);">
-                            <a class="dropdown-item" value="">default</a>
-                            <a class="dropdown-item" value="primary">primary</a>
+                        <select class="selectpicker" onchange="set_theme(this.value);">
+                            <option value=""></option>
+                            <option value="warning">warning</option>
+                            <option value="danger">danger</option>
+                            <option value="success">success</option>
+                            <option value="info">info</option>
+                            <option value="greensea" selected="selected">greensea</option>
+                            <option value="nephrite">nephrite</option>
+                            <option value="belizehole">belizehole</option>
+                            <option value="wisteria">wisteria</option>
+                            <option value="asphalt">asphalt</option>
+                            <option value="orange">orange</option>
+                            <option value="pumpkin">pumpkin</option>
+                            <option value="pomegranate">pomegranate</option>
+                            <option value="clouds">clouds</option>
+                            <option value="asbestos">asbestos</option>
+                        </select>
+    
+                     <!--     <a class="dropdown-item" value="primary">primary</a>
                             <a class="dropdown-item" value="warning">warning</a>
                             <a class="dropdown-item" value="danger">danger</a>
                             <a class="dropdown-item" value="success">success</a>
@@ -68,8 +74,9 @@
                             <a class="dropdown-item" value="pumpkin">pumpkin</a>
                             <a class="dropdown-item" value="pomegranate">pomegranate</a>
                             <a class="dropdown-item" value="clouds">clouds</a>
-                            <a class="dropdown-item" value="asbestos">asbestos</a>
-                        </ul>
+                            <a class="dropdown-item" value="asbestos">asbestos</a> -->  
+                        
+                    
                     </li>
                     <li class="active">
                         <a href="#adjustSubmenu" data-toggle="collapse" aria-expanded="false">
@@ -138,10 +145,12 @@
          <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
          <!-- Bootstrap Js CDN -->
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
          <script type="text/javascript" src="../js/jsmind.js"></script>
          <script type="text/javascript" src="../js/jsmind.draggable.js"></script>
          <script type="text/javascript" src="../features/jsmind.shell.js"></script>
          <script type="text/javascript" src="../features/jsmind-features.js"></script>
          <script type="text/javascript" src="../js/jsmind.screenshot.js"></script>
+
     </body>
 </html>
