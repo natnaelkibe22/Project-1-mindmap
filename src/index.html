@@ -36,47 +36,28 @@
                             <li><a onclick="change_text_color();" href="#">Default color</a></li>
                             <li><a onclick="change_background_color();" href="#">change node background</a></li>
                         </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="btn-group dropright" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           <i class="glyphicon glyphicon-pencil"></i>
-                           Theme
-                        </a>
-                        <select class="selectpicker" onchange="set_theme(this.value);">
-                            <option value=""></option>
-                            <option value="warning">warning</option>
-                            <option value="danger">danger</option>
-                            <option value="success">success</option>
-                            <option value="info">info</option>
-                            <option value="greensea" selected="selected">greensea</option>
-                            <option value="nephrite">nephrite</option>
-                            <option value="belizehole">belizehole</option>
-                            <option value="wisteria">wisteria</option>
-                            <option value="asphalt">asphalt</option>
-                            <option value="orange">orange</option>
-                            <option value="pumpkin">pumpkin</option>
-                            <option value="pomegranate">pomegranate</option>
-                            <option value="clouds">clouds</option>
-                            <option value="asbestos">asbestos</option>
-                        </select>
-    
-                     <!--     <a class="dropdown-item" value="primary">primary</a>
-                            <a class="dropdown-item" value="warning">warning</a>
-                            <a class="dropdown-item" value="danger">danger</a>
-                            <a class="dropdown-item" value="success">success</a>
-                            <a class="dropdown-item" value="info">info</a>
-                            <a class="dropdown-item" value="greensea" selected="selected">greensea</a>
-                            <a class="dropdown-item" value="nephrite">nephrite</a>
-                            <a class="dropdown-item" value="belizehole">belizehole</a>
-                            <a class="dropdown-item" value="wisteria">wisteria</a>
-                            <a class="dropdown-item" value="asphalt">asphalt</a>
-                            <a class="dropdown-item" value="orange">orange</a>
-                            <a class="dropdown-item" value="pumpkin">pumpkin</a>
-                            <a class="dropdown-item" value="pomegranate">pomegranate</a>
-                            <a class="dropdown-item" value="clouds">clouds</a>
-                            <a class="dropdown-item" value="asbestos">asbestos</a> -->  
-                        
-                    
+                    </li>  
+                    <li class="active">
+                        <a href="#theme_menu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-edit"></i> Theme </a>
+                        <ul class="collapse list-unstyled"  id="theme_menu">
+                            <li><a onclick="set_theme('');"> default </a></li>
+                            <li><a onclick="set_theme('primary');"> primary </a></li>
+                            <li><a  onclick="set_theme('warning');">warning</a></li>
+                            <li><a  onclick="set_theme('danger');">danger</a></li>
+                            <li><a  onclick="set_theme('success');">success</a></li>
+                            <li><a  onclick="set_theme('info');">info</a></li>
+                            <li> <a onclick="set_theme('greensea');" selected="selected">greensea</a> </li>
+                            <li> <a onclick="set_theme('nephrite');" >nephrite</a> </li>
+                            <li> <a onclick="set_theme('belizehole');">belizehole</a> </li>
+                            <li> <a  onclick="set_theme('wisteria');" >wisteria</a> </li>
+                            <li> <a onclick="set_theme('asphalt');" >asphalt</a> </li>
+                            <li> <a onclick="set_theme('orange');" >orange</a> </li>
+                            <li> <a onclick="set_theme('pumpkin');">pumpkin</a> </li>
+                            <li> <a  onclick="set_theme('pomegranate');">pomegranate</a> </li>
+                            <li> <a  onclick="set_theme('clouds');">clouds</a> </li>
+                            <li> <a  onclick="set_theme('asbestos');">asbestos</a></li>
+                        </ul>
                     </li>
                     <li class="active">
                         <a href="#adjustSubmenu" data-toggle="collapse" aria-expanded="false">
