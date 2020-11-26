@@ -135,14 +135,12 @@
                     </header>
                     <div class="card-content">
                       <div class="content">
-                        <p class = "card-info--box" contenteditable = 'false'>
-                             Add your description...
-                        </p>
+                        <p class = "card-info--box" type = 'text' id = "description" contenteditable = false onfocus="d_input();" > Add your description...</p>
                       </div>
                     </div>
                     <footer class="card-footer">
-                      <a href="#" class="card-footer-item">Save</a>
-                      <a href="#" class="card-footer-item" onclick="edit_card();">
+                      <a type="button" name = 'save-btn' class="card-footer-item" onclick = "save_card();">Save</a>
+                      <a type="button" name='edit-btn' class="card-footer-item" onclick="edit_card();">
                           <i class="glyphicon glyphicon-edit" id ="card-head-icon" > Edit</i></a>
                     </footer>
                   </div>

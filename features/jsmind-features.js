@@ -25,12 +25,7 @@ function show_data(){
     var mind_string = jsMind.util.json.json2string(mind_data);
     prompt_info(mind_string);
 }
-function edit_card() {
-   return document.getElementById("card-info--box").contentEditable;
-}
-function save_card() {
-    document.getElementById("card-info--box").contentEditable = 'false';
-}
+
 function save_file(){
     var mind_data = _jm.get_data();
     var mind_name = mind_data.meta.name;
@@ -351,6 +346,22 @@ $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
     });
+    $("description").focus(function() {
+        $(this).val("");
+    });
 });
+
+
+ function save_card(){
+    $('p[contenteditable="true"]').attr('contenteditable', false);
+    $('p[contenteditable="false"]').attr('contenteditable', false);
+}
+
+function edit_card(){
+    $('p[contenteditable="false"]').attr('contenteditable', true);
+}
+function d_input() {
+    document.getElementById('description').innerHTML = '';
+}
 
 open_empty();
