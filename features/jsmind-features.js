@@ -25,7 +25,12 @@ function show_data(){
     var mind_string = jsMind.util.json.json2string(mind_data);
     prompt_info(mind_string);
 }
-
+function edit_card() {
+   return document.getElementById("card-info--box").contentEditable;
+}
+function save_card() {
+    document.getElementById("card-info--box").contentEditable = 'false';
+}
 function save_file(){
     var mind_data = _jm.get_data();
     var mind_name = mind_data.meta.name;

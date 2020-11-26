@@ -512,14 +512,14 @@ bottom:   110px;
     margin-bottom: 20px;
   }
   
-  .card-header-title-input {
+  .card-head-title-input {
     font-size: inherit;
     font-weight: inherit;
     width: 50%;
     display: block;
   }
   
-  .card-header-title--editable {
+  .card-head-title--editable {
     outline: none;
   }
   .card {
@@ -527,13 +527,13 @@ bottom:   110px;
     -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
             box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
     color: #4a4a4a;
-    max-width: 60%;
+    max-width: 550px;
     position: relative;
     left: 1010px;
     bottom: 735px;
   }
   
-  .card-header {
+  .card-head {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
             align-items: stretch;
@@ -544,7 +544,7 @@ bottom:   110px;
     display: flex;
   }
   
-  .card-header-title {
+  .card-head-title {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -558,14 +558,19 @@ bottom:   110px;
     font-weight: 700;
     padding: 0.75rem;
   }
-  
-  .card-header-title.is-centered {
+    .card-info--box {
+    color: #363636;
+    resize:vertical;
+    outline: none;
+  }
+
+  .card-head-title.is-centered {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
   }
   
-  .card-header-icon {
+  .card-head-icon {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
