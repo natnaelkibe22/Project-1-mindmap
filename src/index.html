@@ -10,6 +10,7 @@
          <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" rel="stylesheet" />
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="../style/jsmind-navbar.css">
         <link rel="stylesheet" href="../style/jsmind.css">
@@ -120,11 +121,18 @@
                           </i></button>
                      </ul>  
                 </div>
+                
                 <div class="card bg-light mb-3" style="position: top-right; max-width: 18rem;">
                     <div class="card-header">preview</div>
                     <div class="card-body">
-                      <h5 class="card-title">Light card title</h5>
+                        <p class="card-header-title card-header-title--editable" contenteditable>
+                            Light card title
+                        </p>
                       <textarea class="card-text form-control" id="exampleFormControlTextarea1" rows="3">Add your description here...</textarea>
+                      <footer class="card-footer">
+                        <a href="#" class="card-footer-item">Save</a>
+                        <a href="#" class="card-footer-item">Edit</a>
+                      </footer>
                     </div>
          <input style="visibility: hidden;" class="file" type="file" id = "image-chooser" accept="image/*"/>
     </div>

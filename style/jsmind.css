@@ -436,9 +436,9 @@ a.article, a.article:hover {
     background:#f4f4f4;
 }
 #zoom-inline{
-position: absolute;
-right:    0;
-bottom:   0;
+position: relative;
+left:    520px;
+bottom:   110px;
 }
 .sidebar-button{
     padding: 80px 30px;
@@ -501,3 +501,24 @@ bottom:   0;
         display: none;
     }
 }
+/* ---------------------------------------------------
+    DISCRIPTION BOX
+----------------------------------------------------- */
+.container {
+    padding: 20px;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  .card-header-title-input {
+    font-size: inherit;
+    font-weight: inherit;
+    width: 50%;
+    display: block;
+  }
+  
+  .card-header-title--editable {
+    outline: none;
+  }
