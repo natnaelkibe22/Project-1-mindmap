@@ -2420,7 +2420,7 @@
                 this.init_nodes_size(nodes[nodeid]);
             }
         },
-
+        
         add_node: function (node) {
             this.create_node_element(node, this.e_nodes);
             this.init_nodes_size(node);
@@ -2577,6 +2577,7 @@
             this.graph.set_size(1, 1);
             this.e_nodes.style.width = '1px';
             this.e_nodes.style.height = '1px';
+            this.e_nodes.style.color = 'black';
 
             this.expand_size();
             this._show();
