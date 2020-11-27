@@ -2499,7 +2499,7 @@
                 if (this.opts.support_html) {
                     $h(element, node.topic);
                 } else {
-                    $t(element, node.topic);
+                    $t(element, 'null');
                 }
             }
             view_data.width = element.clientWidth;
@@ -2564,9 +2564,9 @@
                 element.removeChild(this.e_editor);
                 if (jm.util.text.is_empty(topic) || node.topic === topic) {
                     if (this.opts.support_html) {
-                        $h(element, node.topic);
+                        $h(element, '');
                     } else {
-                        $t(element, node.topic);
+                        $t(element, '');
                     }
                 } else {
                     this.jm.update_node(node.id, topic);
@@ -2583,8 +2583,8 @@
 
         resize: function () {
             this.graph.set_size(1, 1);
-            this.e_nodes.style.width = '1px';
-            this.e_nodes.style.height = '1px';
+            this.e_nodes.style.width = '14px';
+            this.e_nodes.style.height = '14px';
             this.e_nodes.style.color = 'black';
 
             this.expand_size();
