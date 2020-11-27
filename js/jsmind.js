@@ -2453,7 +2453,9 @@
                     }
                     else {
                         node_counter = node_counter + 1;
-                        $h(d, 'node\t' + node_counter);
+                    var node_topic_tmp = 'node\t' + node_counter;
+                        $h(d, node_topic_tmp);
+                        
                     }
                 
 
@@ -2499,7 +2501,7 @@
                 if (this.opts.support_html) {
                     $h(element, node.topic);
                 } else {
-                    $t(element, 'null');
+                    $t(element, '--null--');
                 }
             }
             view_data.width = element.clientWidth;
@@ -2516,6 +2518,11 @@
                 this.selected_node = node;
                 node._data.view.element.className += ' selected';
                 this.clear_node_custom_style(node);
+              //  if (node.isroot)
+                    document.getElementById('card-title').innerHTML = node.topic; 
+                    /* need to store child node topic to a generic name */
+                    
+                  
             }
         },
 
@@ -2564,7 +2571,11 @@
                 element.removeChild(this.e_editor);
                 if (jm.util.text.is_empty(topic) || node.topic === topic) {
                     if (this.opts.support_html) {
-                        $h(element, '');
+                        if (node.isroot)  {
+                            $h(element, node.topic);
+                        }
+                        else
+                           $h(element, '--null--');
                     } else {
                         $t(element, '');
                     }

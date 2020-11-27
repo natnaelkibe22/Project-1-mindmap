@@ -54,12 +54,15 @@ function open_file(){
 function select_node(){
     var nodeid = 'other';
     _jm.select_node(nodeid);
+    document.getElementById('card-title').innerHTML = selected_node.topic
 }
 
 function show_selected(){
     var selected_node = _jm.get_selected_node();
     if(!!selected_node){
-        prompt_info(selected_node.topic);
+      //  prompt_info(selected_node.topic);
+        
+
     }else{
         prompt_info('nothing');
     }
@@ -68,6 +71,7 @@ function show_selected(){
 function get_selected_nodeid(){
     var selected_node = _jm.get_selected_node();
     if(!!selected_node){
+        document.getElementById('card-title').innerHTML = selected_node.topic;
         return selected_node.id;
     }else{
         return null;
@@ -351,7 +355,6 @@ $(document).ready(function () {
     });
 });
 
-
  function save_card(){
     $('p[contenteditable="true"]').attr('contenteditable', false);
     $('p[contenteditable="false"]').attr('contenteditable', false);
@@ -363,5 +366,17 @@ function edit_card(){
 function d_input() {
     document.getElementById('description').innerHTML = '';
 }
+/*
+var getDescription = function() {
+    var selection = d3.select(".node.selected")[0][0];
+    if(selection){
+      var data = selection.__data__;
 
+      $("#card-title").html();
+      $("#note").val(data.top);
+    //  $("#note").html(data.description);
+    }
+    //return data.description;
+    }
+*/
 open_empty();
