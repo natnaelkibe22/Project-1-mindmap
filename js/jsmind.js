@@ -5,7 +5,6 @@
  * Project Home:
  *   https://github.com/hizzgdev/jsmind/
  */
-
 ; (function ($w) {
     'use strict';
     // set 'jsMind' as the library name.
@@ -2296,7 +2295,7 @@
 
         this.graph = null;
     };
-
+    var node_counter = 0;
     jm.view_provider.prototype = {
         init: function () {
             logger.debug('view.init');
@@ -2440,6 +2439,7 @@
                 d.className = 'root';
             } else {
                 var d_e = $c('jmexpander');
+                var count = 1;
                 $t(d_e, '-');
                 d_e.setAttribute('nodeid', node.id);
                 d_e.style.visibility = 'hidden';
@@ -2448,7 +2448,15 @@
             }
             if (!!node.topic) {
                 if (this.opts.support_html) {
-                    $h(d, node.topic);
+                    if (node.isroot)  {
+                        $h(d, node.topic);
+                    }
+                    else {
+                        node_counter = node_counter + 1;
+                        $h(d, 'node\t' + node_counter);
+                    }
+                
+
                 } else {
                     $t(d, node.topic);
                 }
