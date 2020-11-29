@@ -262,7 +262,7 @@ span {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background: #151822;
     color: #fff;
     transition: all 0.3s;
 }
@@ -313,7 +313,7 @@ span {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #151822;
 }
 
 #sidebar .sidebar-header strong {
@@ -332,7 +332,7 @@ span {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
+    color: #151822;
     background: #fff;
 }
 #sidebar ul li a i {
@@ -341,7 +341,7 @@ span {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #151822;
 }
 
 
@@ -365,7 +365,7 @@ a[aria-expanded="true"]::before {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #151822;
 }
 
 ul.CTAs {
@@ -382,11 +382,11 @@ ul.CTAs a {
 
 a.download {
     background: #fff;
-    color: #7386D5;
+    color: #151822;
 }
 
 a.article, a.article:hover {
-    background: #6d7fcc !important;
+    background: #151822 !important;
     color: #fff !important;
 }
 
@@ -411,6 +411,16 @@ a.article, a.article:hover {
 position: relative;
 left:    520px;
 bottom:   110px;
+}
+#node-button{
+position: relative;
+left: 300px;
+bottom: 130px;
+}
+#node-rmv-button{
+position: relative;
+left: 320px;
+bottom: 130px;
 }
 .sidebar-button{
     padding: 80px 30px;
