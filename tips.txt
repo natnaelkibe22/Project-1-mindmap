@@ -1,0 +1,21 @@
+Libraries in directory: node_modules
+
+Initial database setup: init.sql
+
+Run code: nom start
+
+Sql login: psql -d postgres -U master_user
+	psql (13.0)
+	Type "help" for help.
+
+Connect to database: \c mindmap_api
+	You are now connected to database "mindmap_api" as user "master_user".
+
+
+EXTRA
+	+ .env file might "disappear" in UI, its not gone. Just run "open .env" to view 	  and edit
+	+ dotenv@8.2.0
+	+ cors@2.8.5
+	+ pg@8.5.0
+	+ express@4.17.1
+	+ nodemon@2.0.6
