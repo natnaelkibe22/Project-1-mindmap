@@ -1,4 +1,3 @@
- 
 Libraries in directory: node_modules
 
 Initial database setup: init.sql
