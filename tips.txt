@@ -2,7 +2,7 @@ Libraries in directory: node_modules
 
 Initial database setup: init.sql
 
-Run code: nom start
+Run code: npm start
 
 Sql login: psql -d postgres -U master_user
 	psql (13.0)
