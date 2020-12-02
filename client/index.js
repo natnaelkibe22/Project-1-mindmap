@@ -104,7 +104,6 @@ app.delete('/mindmaps', deleteMindmap = (request, response) => {
     },)
 })
 
-
 /*
 ----------------------------------------------------------------------------
 Node table routes
@@ -268,9 +267,11 @@ function nodeDelete (listOfActiveNodesID) {
     }
   }
 
-
-
-// Start server
+/*
+----------------------------------------------------------------------------
+Start server
+----------------------------------------------------------------------------
+*/
 app.listen(process.env.PORT || 3002, () => {
   console.log(`Server listening`)
 })
