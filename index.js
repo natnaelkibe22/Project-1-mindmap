@@ -25,6 +25,7 @@ app.get('/mindmaps', getMindmaps = (request, response) => {
   })
 })
 
+
 //POST Mindmap
 app.post('/mindmaps', postMindmap = (request, response) => {
   const {id, name, topic, shape} = request.body
@@ -55,8 +56,6 @@ app.get('/nodes', getNode = (request, response) => {
   })
 })
 
-
-
 //POST Children
 app.post('/nodes', postNode = (request, response) => {
   const { id, name, parent, mindmap, topic, shape } = request.body
@@ -71,6 +70,73 @@ app.post('/nodes', postNode = (request, response) => {
       response.status(201).json({status: 'success', message: 'Node added.'})
     },)
 })
+
+//PATCH nodes fields
+app.patch('/nodes/name', patchNode = (request, response) => {
+  const {setvalue, id} = request.body
+  pool.query(
+    'UPDATE nodes SET name = ($1) WHERE id = ($2)',
+    [setvalue, id],
+    (error) => {
+      if (error) {
+        throw error
+      }
+      else {
+        response.status(201).json({status: 'success', message: 'Nodes updated with id ${request.body.id}'})
+      }
+    },)
+})
+app.patch('/nodes/parent', patchNode = (request, response) => {
+  const {setvalue, id} = request.body
+  pool.query(
+    'UPDATE mindmaps SET parent = ($1) WHERE id = ($2)',
+    [setvalue, id],
+    (error) => {
+      if (error) {
+        throw error
+      }
+      response.status(201).json({status: 'success', message: 'Nodes updated.'})
+    },)
+})
+app.patch('/nodes/mindmap', patchNode = (request, response) => {
+  const {setvalue, id} = request.body
+  pool.query(
+    'UPDATE mindmaps SET mindmap = ($1) WHERE id = ($2)',
+    [setvalue, id],
+    (error) => {
+      if (error) {
+        throw error
+      }
+      response.status(201).json({status: 'success', message: 'Nodes updated.'})
+    },)
+}) 
+app.patch('/nodes/shape', patchNode = (request, response) => {
+  const {setvalue, id} = request.body
+  pool.query(
+    'UPDATE mindmaps SET shape = ($1) WHERE id = ($2)',
+    [setvalue, id],
+    (error) => {
+      if (error) {
+        throw error
+      }
+      response.status(201).json({status: 'success', message: 'Nodes updated.'})
+    },)
+}) 
+app.patch('/nodes/topic', patchNode = (request, response) => {
+  const {setvalue, id} = request.body
+  pool.query(
+    'UPDATE mindmaps SET topic = ($1) WHERE id = ($2)',
+    [setvalue, id],
+    (error) => {
+      if (error) {
+        throw error
+      }
+      response.status(201).json({status: 'success', message: 'Nodes updated.'})
+    },)
+}) 
+
+
+
 
 // Start server
 app.listen(process.env.PORT || 3002, () => {
