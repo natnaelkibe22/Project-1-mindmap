@@ -82,56 +82,66 @@ app.patch('/nodes/name', patchNode = (request, response) => {
         throw error
       }
       else {
-        response.status(201).json({status: 'success', message: 'Nodes updated with id ${request.body.id}'})
+        const id1 = request.body.id;
+        const mess = "Nodes updated with id ".concat(id1)
+        response.status(201).json({status: 'success', message: mess})
       }
     },)
 })
 app.patch('/nodes/parent', patchNode = (request, response) => {
   const {setvalue, id} = request.body
   pool.query(
-    'UPDATE mindmaps SET parent = ($1) WHERE id = ($2)',
+    'UPDATE nodes SET parent = ($1) WHERE id = ($2)',
     [setvalue, id],
     (error) => {
       if (error) {
         throw error
       }
-      response.status(201).json({status: 'success', message: 'Nodes updated.'})
+      const id1 = request.body.id;
+        const mess = "Nodes updated with id ".concat(id1)
+        response.status(201).json({status: 'success', message: mess})
     },)
 })
 app.patch('/nodes/mindmap', patchNode = (request, response) => {
   const {setvalue, id} = request.body
   pool.query(
-    'UPDATE mindmaps SET mindmap = ($1) WHERE id = ($2)',
+    'UPDATE nodes SET mindmap = ($1) WHERE id = ($2)',
     [setvalue, id],
     (error) => {
       if (error) {
         throw error
       }
-      response.status(201).json({status: 'success', message: 'Nodes updated.'})
+      const id1 = request.body.id;
+        const mess = "Nodes updated with id ".concat(id1)
+        response.status(201).json({status: 'success', message: mess})
     },)
 }) 
 app.patch('/nodes/shape', patchNode = (request, response) => {
   const {setvalue, id} = request.body
   pool.query(
-    'UPDATE mindmaps SET shape = ($1) WHERE id = ($2)',
+    'UPDATE nodes SET shape = ($1) WHERE id = ($2)',
     [setvalue, id],
     (error) => {
       if (error) {
         throw error
       }
-      response.status(201).json({status: 'success', message: 'Nodes updated.'})
+      const id1 = request.body.id;
+        const mess = "Nodes updated with id ".concat(id1)
+        response.status(201).json({status: 'success', message: mess})
     },)
 }) 
 app.patch('/nodes/topic', patchNode = (request, response) => {
   const {setvalue, id} = request.body
   pool.query(
-    'UPDATE mindmaps SET topic = ($1) WHERE id = ($2)',
+    'UPDATE nodes SET topic = ($1) WHERE id = ($2)',
     [setvalue, id],
     (error) => {
       if (error) {
         throw error
       }
-      response.status(201).json({status: 'success', message: 'Nodes updated.'})
+      const id1 = request.body.id;
+        const mess = "Nodes updated with id ".concat(id1)
+        response.status(201).json({status: 'success', message: mess})
     },)
 }) 
 
