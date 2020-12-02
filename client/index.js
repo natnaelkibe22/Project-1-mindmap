@@ -49,9 +49,9 @@ app.patch('/mindmaps/name', patchMindmap = (request, response) => {
       if (error) {
         throw error
       }
-      else {
-        response.status(201).json({status: 'success', message: 'Mindmap name updated with id.'})
-      }
+      const id1 = request.body.id;
+      const mess = "Mindmap name updated with id ".concat(id1)
+      response.status(201).json({status: 'success', message: mess})
     },)
 })
 
@@ -65,7 +65,9 @@ app.patch('/mindmaps/topic', patchMindmap = (request, response) => {
       if (error) {
         throw error
       }
-      response.status(201).json({status: 'success', message: 'Mindmap topic updated with id.'})
+      const id1 = request.body.id;
+      const mess = "Mindmap topic updated with id ".concat(id1)
+      response.status(201).json({status: 'success', message: mess})
     },)
 })
 
@@ -79,9 +81,29 @@ app.patch('/mindmaps/shape', patchMindmap = (request, response) => {
       if (error) {
         throw error
       }
-      response.status(201).json({status: 'success', message: 'Mindmap shape updated with id.'})
+      const id1 = request.body.id;
+      const mess = "Mindmap shape updated with id ".concat(id1)
+      response.status(201).json({status: 'success', message: mess})
     },)
 })
+
+//DELETE Mindmap
+app.delete('/mindmaps', deleteMindmap = (request, response) => {
+  const {id} = request.body
+  pool.query(
+    'DELETE FROM nodes WHERE mindmap = $1 ', [id], (error) => {  //Delete all nodes under mindmap
+      if (error) {
+        throw error
+      }
+      pool.query('DELETE FROM mindmaps WHERE id = $1 ', [id], (error) => {  //Delete mindmap from minmaps table
+        if (error) {
+          throw error
+        }
+      },)
+      response.status(201).json({status: 'success', message: 'Mindmap deleted.'})
+    },)
+})
+
 
 /*
 ----------------------------------------------------------------------------
@@ -125,7 +147,9 @@ app.patch('/nodes/name', patchNode = (request, response) => {
         throw error
       }
       else {
-        response.status(201).json({status: 'success', message: 'Nodes name updated with id.'})
+        const id1 = request.body.id;
+        const mess = "Node name updated with id ".concat(id1)
+        response.status(201).json({status: 'success', message: mess})
       }
     },)
 })
@@ -134,41 +158,49 @@ app.patch('/nodes/name', patchNode = (request, response) => {
 app.patch('/nodes/parent', patchNode = (request, response) => {
   const {setvalue, id} = request.body
   pool.query(
-    'UPDATE mindmaps SET parent = ($1) WHERE id = ($2)',
+    'UPDATE nodes SET parent = ($1) WHERE id = ($2)',
     [setvalue, id],
     (error) => {
       if (error) {
         throw error
       }
-      response.status(201).json({status: 'success', message: 'Nodes parent updated with id.'})
+      const id1 = request.body.id;
+      const mess = "Node parent updated with id ".concat(id1)
+      response.status(201).json({status: 'success', message: mess})
     },)
 })
 
-//PATCH nodes mindmape field
+
+//PATCH nodes mindmap field
 app.patch('/nodes/mindmap', patchNode = (request, response) => {
   const {setvalue, id} = request.body
   pool.query(
-    'UPDATE mindmaps SET mindmap = ($1) WHERE id = ($2)',
+    'UPDATE nodes SET mindmap = ($1) WHERE id = ($2)',
     [setvalue, id],
     (error) => {
       if (error) {
         throw error
       }
-      response.status(201).json({status: 'success', message: 'Nodes mindmap updated with id.'})
+      const id1 = request.body.id;
+      const mess = "Node mindmap updated with id ".concat(id1)
+      response.status(201).json({status: 'success', message: mess})
     },)
 })
+
 
 //PATCH nodes shape field
 app.patch('/nodes/shape', patchNode = (request, response) => {
   const {setvalue, id} = request.body
   pool.query(
-    'UPDATE mindmaps SET shape = ($1) WHERE id = ($2)',
+    'UPDATE nodes SET shape = ($1) WHERE id = ($2)',
     [setvalue, id],
     (error) => {
       if (error) {
         throw error
       }
-      response.status(201).json({status: 'success', message: 'Nodes shape updated with id.'})
+      const id1 = request.body.id;
+      const mess = "Node shape updated with id ".concat(id1)
+      response.status(201).json({status: 'success', message: mess})
     },)
 })
 
@@ -176,15 +208,66 @@ app.patch('/nodes/shape', patchNode = (request, response) => {
 app.patch('/nodes/topic', patchNode = (request, response) => {
   const {setvalue, id} = request.body
   pool.query(
-    'UPDATE mindmaps SET topic = ($1) WHERE id = ($2)',
+    'UPDATE nodes SET topic = ($1) WHERE id = ($2)',
     [setvalue, id],
     (error) => {
       if (error) {
         throw error
       }
-      response.status(201).json({status: 'success', message: 'Nodes topic updated with id.'})
+      const id1 = request.body.id;
+      const mess = "Node topic updated with id ".concat(id1)
+      response.status(201).json({status: 'success', message: mess})
     },)
 })
+
+//DELETE Children
+app.delete('/nodes', deleteMindmap = (request, response) => {
+  const {id} = request.body
+  let IDList = [id]
+  nodeDelete(IDList) //Pass id of node as a list and delete node and all children of node using nodeDelete() -> (line 102)
+  response.status(201).json({status: 'success', message: 'Nodes deleted.'})
+})
+
+//Helper function that recursively deletes all Active nodes and children of all Active nodes
+function nodeDelete (listOfActiveNodesID) {
+  for (i = 0; i < listOfActiveNodesID.length; i++) {
+    let currentNodeID = listOfActiveNodesID[i]
+    pool.query(
+      'SELECT FROM nodes WHERE parent = $1', [currentNodeID], (error, results) => {  // Find children on current node
+        if (error) {
+          throw error
+        }
+        if (results.rowCount === 0) {  // if there are no children then delete current node
+          pool.query(
+            'DELETE FROM nodes WHERE id = $1 ', [currentNodeID], (error) => {
+              if (error) {
+                throw error
+              }
+            },)
+        }
+        else {  // if there are children find child node ids from nodes table and recursively call nodeDelete with child node ids
+          pool.query(
+            'SELECT id FROM nodes WHERE parent = $1', [currentNodeID], (error, result) => {
+              if (error) {
+                throw error
+              }
+              let childNodeIDs = []
+              for (j = 0; j < result.rowCount; j++) {
+                childNodeIDs.push(result.rows[j].id)
+              }
+              nodeDelete(childNodeIDs) // recursive call to delete children
+              pool.query(
+                'DELETE FROM nodes WHERE id = $1', [currentNodeID], (error) => {  // After all children have been deleted through recursive call delete current node
+                  if (error) {
+                    throw error
+                  }
+                },)
+            },)
+        }
+      },)
+    }
+  }
+
 
 
 // Start server
