@@ -39,6 +39,50 @@ app.post('/mindmaps', postMindmap = (request, response) => {
     },)
 })
 
+//PATCH mindmap name field
+app.patch('/mindmaps/name', patchMindmap = (request, response) => {
+  const {setvalue, id} = request.body
+  pool.query(
+    'UPDATE mindmaps SET name = ($1) WHERE id = ($2)',
+    [setvalue, id],
+    (error) => {
+      if (error) {
+        throw error
+      }
+      else {
+        response.status(201).json({status: 'success', message: 'Mindmap name updated with id.'})
+      }
+    },)
+})
+
+//PATCH mindmap topic field
+app.patch('/mindmaps/topic', patchMindmap = (request, response) => {
+  const {setvalue, id} = request.body
+  pool.query(
+    'UPDATE mindmaps SET topic = ($1) WHERE id = ($2)',
+    [setvalue, id],
+    (error) => {
+      if (error) {
+        throw error
+      }
+      response.status(201).json({status: 'success', message: 'Mindmap topic updated with id'})
+    },)
+})
+
+//PATCH mindmap shape field
+app.patch('/mindmaps/shape', patchMindmap = (request, response) => {
+  const {setvalue, id} = request.body
+  pool.query(
+    'UPDATE mindmaps SET shape = ($1) WHERE id = ($2)',
+    [setvalue, id],
+    (error) => {
+      if (error) {
+        throw error
+      }
+      response.status(201).json({status: 'success', message: 'Mindmap shape updated with id'})
+    },)
+})
+
 /*
 ----------------------------------------------------------------------------
 Node table routes
@@ -57,7 +101,7 @@ app.get('/nodes', getNode = (request, response) => {
 
 
 
-//POST Children
+//POST Node
 app.post('/nodes', postNode = (request, response) => {
   const { id, name, parent, mindmap, topic, shape } = request.body
 
