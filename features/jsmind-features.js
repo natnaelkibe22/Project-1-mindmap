@@ -26,14 +26,14 @@ function show_data(){
     prompt_info(mind_string);
 }
 
-function save_file(){
+function save_data(){
     var mind_data = _jm.get_data();
     var mind_name = mind_data.meta.name;
     var mind_str = jsMind.util.json.json2string(mind_data);
     jsMind.util.file.save(mind_str,'text/jsmind',mind_name+'.jm');
 }
 
-function open_file(){
+function load_data(){
     var file_input = document.getElementById('file_input');
     var files = file_input.files;
     if(files.length > 0){
@@ -46,8 +46,6 @@ function open_file(){
                 prompt_info('can not open this file as mindmap');
             }
         });
-    }else{
-        prompt_info('please choose a file first')
     }
 }
 
