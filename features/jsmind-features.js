@@ -208,6 +208,16 @@ function zoomOut() {
     };
 };
 
+function save_card() {
+    _jm.view.save_card();
+};
+function edit_card() {
+    _jm.view.edit_card();
+};
+function d_input() {
+    _jm.view.d_input();
+};
+
 function toggle_editable(btn){
     var editable = _jm.get_editable();
     if(editable){
@@ -355,17 +365,7 @@ $(document).ready(function () {
     });
 });
 
- function save_card(){
-    $('p[contenteditable="true"]').attr('contenteditable', false);
-    $('p[contenteditable="false"]').attr('contenteditable', false);
-}
 
-function edit_card(){
-    $('p[contenteditable="false"]').attr('contenteditable', true);
-}
-function d_input() {
-    document.getElementById('description').innerHTML = '';
-}
 /*
 var getDescription = function() {
     var selection = d3.select(".node.selected")[0][0];

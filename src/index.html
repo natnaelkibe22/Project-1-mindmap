@@ -48,8 +48,6 @@
                             <li><a onclick="add_image_node();" href="#"> Add a image node</a></li>
                             <li><a onclick= "edit_card();" href="#"> Add description</a></li>
                             <li><a onclick="remove_node();" href="#">remove node</a></li>
-                            <li><a onclick="change_text_font();" href="#">change font</a></li>
-                            <li><a onclick="change_text_color();" href="#">Default color</a></li>
                         </ul>
                     </li>  
                     <li class="active">
@@ -144,7 +142,7 @@
                 
                 <div class="card">
                     <header class="card-head">
-                      <p class="card-head-title card-head-title--editable"  id = 'card-title' contenteditable>
+                      <p class="card-head-title card-head-title--editable"  id = 'card-title'>
                         Card title
                       </p>
                       <a href="#" class="card-head-icon" aria-label="more options">
@@ -155,7 +153,7 @@
                     </header>
                     <div class="card-content">
                       <div class="content">
-                        <p class = "card-info--box" type = 'text' id = "description" contenteditable = false onfocus="d_input();" > Add your description...</p>
+                        <p class = "card-info--box" type = 'text' id = "description-box" contenteditable = false onfocus="d_input();" > Add your description...</p>
                       </div>
                     </div>
                     <footer class="card-footer">
