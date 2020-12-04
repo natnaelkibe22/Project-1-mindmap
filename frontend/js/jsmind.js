@@ -1463,6 +1463,7 @@
             this.invoke_event_handle(jm.event_type.select, { evt: 'select_node', data: [], node: node.id });
         },
 
+
         get_selected_node: function () {
             if (!!this.mind) {
                 return this.mind.selected;
@@ -2318,6 +2319,8 @@
             this.e_editor.className = 'jsmind-editor';
             this.e_editor.type = 'text';
 
+            this.map = new Array();
+
             this.actualZoom = 1;
             this.zoomStep = 0.1;
             this.minZoom = 0.5;
@@ -2519,11 +2522,38 @@
                 node._data.view.element.className += ' selected';
                 this.clear_node_custom_style(node);
               //  if (node.isroot)
-                    document.getElementById('card-title').innerHTML = node.topic; 
                     /* need to store child node topic to a generic name */
                     
                   
             }
+            document.getElementById('card-title').innerHTML = node.topic;
+            document.getElementById('description-box').innerHTML = this.map[node.id];
+        },
+        save_card: function(node){
+            if (!!this.selected_node) {
+                this.selected_node._data.view.element.className =
+                    this.selected_node._data.view.element.className.replace(/\s*selected\b/i, '');
+                this.reset_node_custom_style(this.selected_node);
+            }
+            if (!!node) {
+                this.selected_node = node;
+                node._data.view.element.className += ' selected';
+                this.clear_node_custom_style(node);
+            }
+            this.selected_node = node;
+            var descript_string = document.getElementById('description-box').innerHTML;
+            var nodeid = get_selected_nodeid(this.selected_node);
+            this.map[nodeid] = descript_string;
+            $('p[contenteditable="true"]').attr('contenteditable', false);
+            $('p[contenteditable="false"]').attr('contenteditable', false);
+
+        },
+
+        edit_card: function(){
+            $('p[contenteditable="false"]').attr('contenteditable', true);
+        },
+        d_input: function() {
+            document.getElementById('description-box').innerHTML = '';
         },
 
         select_clear: function () {
@@ -3043,4 +3073,3 @@
         $w[__name__] = jm;
     }
 })(typeof window !== 'undefined' ? window : global);
-
