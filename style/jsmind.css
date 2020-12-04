@@ -414,12 +414,22 @@ bottom:   110px;
 }
 #node-button{
 position: relative;
-left: 300px;
+left: 240px;
 bottom: 130px;
 }
 #node-rmv-button{
 position: relative;
-left: 320px;
+left: 260px;
+bottom: 130px;
+}
+#Exnode-button{
+position: relative;
+left: 280px;
+bottom: 130px;
+}
+#Colnode-button{
+position: relative;
+left: 300px;
 bottom: 130px;
 }
 .sidebar-button{

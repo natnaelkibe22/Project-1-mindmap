@@ -118,7 +118,7 @@
                 </nav>
                 
                 <div class="line"></div>
-                <div id="jsmind_container"> </div>
+                <div onfocus = 'zoomscroll();' id="jsmind_container"> </div>
                
                 <div class="button" id = "zoom-inline">
                      <ul>
@@ -138,6 +138,12 @@
                   </button>
                 <button type="button" id="node-rmv-button" onclick="remove_node();" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
                     Remove a node
+                  </button>
+                <button type="button" id="Exnode-button" onclick="expand();" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                    Expand node
+                  </button>
+                <button type="button" id="Colnode-button" onclick="collapse();" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                    Collapse node
                   </button>                
                 
                 <div class="card">

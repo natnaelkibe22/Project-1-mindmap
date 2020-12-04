@@ -1463,6 +1463,7 @@
             this.invoke_event_handle(jm.event_type.select, { evt: 'select_node', data: [], node: node.id });
         },
 
+
         get_selected_node: function () {
             if (!!this.mind) {
                 return this.mind.selected;
@@ -2521,13 +2522,13 @@
                 node._data.view.element.className += ' selected';
                 this.clear_node_custom_style(node);
               //  if (node.isroot)
-                    
                     /* need to store child node topic to a generic name */
+                    
+                  
             }
-                document.getElementById('card-title').innerHTML = node.topic;
-                document.getElementById('description-box').innerHTML = this.map[node.id];
+            document.getElementById('card-title').innerHTML = node.topic;
+            document.getElementById('description-box').innerHTML = this.map[node.id];
         },
-
         save_card: function(node){
             if (!!this.selected_node) {
                 this.selected_node._data.view.element.className =
@@ -2545,18 +2546,14 @@
             this.map[nodeid] = descript_string;
             $('p[contenteditable="true"]').attr('contenteditable', false);
             $('p[contenteditable="false"]').attr('contenteditable', false);
-            
+
         },
-        
+
         edit_card: function(){
             $('p[contenteditable="false"]').attr('contenteditable', true);
         },
         d_input: function() {
             document.getElementById('description-box').innerHTML = '';
-        },
-
-        select_clear: function () {
-            this.select_node(null);
         },
 
         select_clear: function () {

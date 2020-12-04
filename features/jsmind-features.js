@@ -98,8 +98,8 @@ imageChooser.addEventListener('change', function (event) {
         var topic = undefined;
         var data = {
             "background-image": reader.result,
-            "width": "100",
-            "height": "100"};
+            "width": "300",
+            "height": "300"};
         var node = _jm.add_node(selected_node, nodeid, topic, data);
         //var node = _jm.add_image_node(selected_node, nodeid, reader.result, 100, 100);
     //add_image_node:function(parent_node, nodeid, image, width, height, data, idx, direction, expanded){
@@ -217,16 +217,8 @@ function edit_card() {
 function d_input() {
     _jm.view.d_input();
 };
-
-function toggle_editable(btn){
-    var editable = _jm.get_editable();
-    if(editable){
-        _jm.disable_edit();
-        btn.innerHTML = 'enable editable';
-    }else{
-        _jm.enable_edit();
-        btn.innerHTML = 'disable editable';
-    }
+function zoomscroll(){
+    _jm.view_center_root;
 }
 
 // this method change size of container, perpare for adjusting jsmind
