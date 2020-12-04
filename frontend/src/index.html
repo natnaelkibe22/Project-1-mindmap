@@ -27,16 +27,27 @@
 
                 <ul class="list-unstyled components">
                     <li class="active">
-                        <a href="#nodeSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <a href="#filemenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-file"></i> File
+                        </a>
+                        <ul class="collapse list-unstyled" id="filemenu">
+                            <li><a onclick="load_data();" href="#">
+                                <i class="glyphicon glyphicon-open-file"></i>
+                                 Open file</a></li>
+                            <li><a onclick="save_data();" href="#">
+                                <i class="glyphicon glyphicon-save-file"></i>
+                                 Save file</a></li>
+                        </ul>
+                    </li> 
+                    <li class="active">
+                        <a href="#Editmenu" data-toggle="collapse" aria-expanded="false">
                             <i class="glyphicon glyphicon-edit"></i> Edit
                         </a>
-                        <ul class="collapse list-unstyled" id="nodeSubmenu">
+                        <ul class="collapse list-unstyled" id="Editmenu">
                             <li><a onclick="add_node();" href="#">Add a node</a></li>
                             <li><a onclick="add_image_node();" href="#"> Add a image node</a></li>
+                            <li><a onclick= "edit_card();" href="#"> Add description</a></li>
                             <li><a onclick="remove_node();" href="#">remove node</a></li>
-                            <li><a onclick="change_text_font();" href="#">change font</a></li>
-                            <li><a onclick="change_text_color();" href="#">Default color</a></li>
-                            <li><a onclick="change_background_color();" href="#">change node background</a></li>
                         </ul>
                     </li>  
                     <li class="active">
@@ -69,7 +80,6 @@
                         <ul class="collapse list-unstyled" id="adjustSubmenu">
                             <li><a onclick="expand();" href="#">Expand node</a></li>
                             <li><a onclick="collapse();" href="#">Collapse node</a></li>
-                            <li><a onclick="toggle();" href="#">Toggle node</a></li>
                             <li><a onclick="expand_all();" href="#">Expand all</a></li>
                             <li><a onclick="collapse_all();" href="#">Collapse all</a></li>
                         </ul>                    
@@ -108,7 +118,7 @@
                 </nav>
                 
                 <div class="line"></div>
-                <div id="jsmind_container"> </div>
+                <div onfocus = 'zoomscroll();' id="jsmind_container"> </div>
                
                 <div class="button" id = "zoom-inline">
                      <ul>
@@ -128,11 +138,17 @@
                   </button>
                 <button type="button" id="node-rmv-button" onclick="remove_node();" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
                     Remove a node
+                  </button>
+                <button type="button" id="Exnode-button" onclick="expand();" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                    Expand node
+                  </button>
+                <button type="button" id="Colnode-button" onclick="collapse();" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                    Collapse node
                   </button>                
                 
                 <div class="card">
                     <header class="card-head">
-                      <p class="card-head-title card-head-title--editable"  id = 'card-title' contenteditable>
+                      <p class="card-head-title card-head-title--editable"  id = 'card-title'>
                         Card title
                       </p>
                       <a href="#" class="card-head-icon" aria-label="more options">
@@ -143,7 +159,7 @@
                     </header>
                     <div class="card-content">
                       <div class="content">
-                        <p class = "card-info--box" type = 'text' id = "description" contenteditable = false onfocus="d_input();" > Add your description...</p>
+                        <p class = "card-info--box" type = 'text' id = "description-box" contenteditable = false onfocus="d_input();" > Add your description...</p>
                       </div>
                     </div>
                     <footer class="card-footer">
