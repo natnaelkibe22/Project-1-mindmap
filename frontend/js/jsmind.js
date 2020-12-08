@@ -77,10 +77,10 @@
             },
             mapping: {
                 addchild: 45, // Insert
-                addbrother: 13, // Enter
+        //        addbrother: 13, // Enter
                 editnode: 113,// F2
                 delnode: 46, // Delete
-                toggle: 32, // Space
+        //       toggle: 32, // Space
                 left: 37, // Left
                 up: 38, // Up
                 right: 39, // Right
@@ -114,14 +114,15 @@
     jm.event_type = { show: 1, resize: 2, edit: 3, select: 4 };
     jm.key = { meta: 1 << 13, ctrl: 1 << 12, alt: 1 << 11, shift: 1 << 10 };
 
-    jm.node = function (sId, iIndex, sTopic, oData, bIsRoot, oParent, eDirection, bExpanded) {
+    jm.node = function (sId, iIndex, sTopic, oData, bIsRoot, oParent, eDirection, bExpanded, fDescription) {
         if (!sId) { logger.error('invalid nodeid'); return; }
         if (typeof iIndex != 'number') { logger.error('invalid node index'); return; }
         if (typeof bExpanded === 'undefined') { bExpanded = true; }
         this.id = sId;
         this.index = iIndex;
         this.topic = sTopic;
-        console.log(this.id);
+        this.description = fDescription;
+        console.log(this.description);
         this.data = oData || {};
         this.isroot = bIsRoot;
         this.parent = oParent;
@@ -208,23 +209,23 @@
             }
         },
 
-        set_root: function (nodeid, topic, data) {
+        set_root: function (nodeid, topic, data, description) {
             if (this.root == null) {
-                this.root = new jm.node(nodeid, 0, topic, data, true);
+                this.root = new jm.node(nodeid, 0, topic, data, true, description);
                 this._put_node(this.root);
             } else {
                 logger.error('root node is already exist');
             }
         },
 
-        add_node: function (parent_node, nodeid, topic, data, idx, direction, expanded) {
+        add_node: function (parent_node, nodeid, topic, data, idx, direction, expanded, description) {
             if (!jm.util.is_node(parent_node)) {
                 var the_parent_node = this.get_node(parent_node);
                 if (!the_parent_node) {
                     logger.error('the parent_node[id=' + parent_node + '] can not be found.');
                     return null;
                 } else {
-                    return this.add_node(the_parent_node, nodeid, topic, data, idx, direction, expanded);
+                    return this.add_node(the_parent_node, nodeid, topic, data, idx, direction, expanded, description);
                 }
             }
             var nodeindex = idx || -1;
@@ -240,9 +241,9 @@
                 } else {
                     d = (direction != jm.direction.left) ? jm.direction.right : jm.direction.left;
                 }
-                node = new jm.node(nodeid, nodeindex, topic, data, false, parent_node, d, expanded);
+                node = new jm.node(nodeid, nodeindex, topic, data, false, parent_node, d, expanded, description);
             } else {
-                node = new jm.node(nodeid, nodeindex, topic, data, false, parent_node, parent_node.direction, expanded);
+                node = new jm.node(nodeid, nodeindex, topic, data, false, parent_node, parent_node.direction, expanded, description);
             }
             if (this._put_node(node)) {
                 parent_node.children.push(node);
@@ -254,18 +255,18 @@
             return node;
         },
 
-        insert_node_before: function (node_before, nodeid, topic, data) {
+        insert_node_before: function (node_before, nodeid, topic, data, description) {
             if (!jm.util.is_node(node_before)) {
                 var the_node_before = this.get_node(node_before);
                 if (!the_node_before) {
                     logger.error('the node_before[id=' + node_before + '] can not be found.');
                     return null;
                 } else {
-                    return this.insert_node_before(the_node_before, nodeid, topic, data);
+                    return this.insert_node_before(the_node_before, nodeid, topic, data, description);
                 }
             }
             var node_index = node_before.index - 0.5;
-            return this.add_node(node_before.parent, nodeid, topic, data, node_index);
+            return this.add_node(node_before.parent, nodeid, topic, data, node_index, description);
         },
 
         get_node_before: function (node) {
@@ -287,18 +288,18 @@
             }
         },
 
-        insert_node_after: function (node_after, nodeid, topic, data) {
+        insert_node_after: function (node_after, nodeid, topic, data, description) {
             if (!jm.util.is_node(node_after)) {
                 var the_node_after = this.get_node(node_before);
                 if (!the_node_after) {
                     logger.error('the node_after[id=' + node_after + '] can not be found.');
                     return null;
                 } else {
-                    return this.insert_node_after(the_node_after, nodeid, topic, data);
+                    return this.insert_node_after(the_node_after, nodeid, topic, data, description);
                 }
             }
             var node_index = node_after.index + 0.5;
-            return this.add_node(node_after.parent, nodeid, topic, data, node_index);
+            return this.add_node(node_after.parent, nodeid, topic, data, node_index, description);
         },
 
         get_node_after: function (node) {
@@ -478,7 +479,7 @@
                     "version": __version__
                 },
                 "format": "node_tree",
-                "data": { "id": "root", "topic": "b" }
+                "data": { "id": "root", "topic": "Topic", "description": "Add" }
             },
             get_mind: function (source) {
                 var df = jm.format.node_tree;
@@ -505,7 +506,7 @@
             _parse: function (mind, node_root) {
                 var df = jm.format.node_tree;
                 var data = df._extract_data(node_root);
-                mind.set_root(node_root.id, node_root.topic, data);
+                mind.set_root(node_root.id, node_root.topic, data, description);
                 if ('children' in node_root) {
                     var children = node_root.children;
                     for (var i = 0; i < children.length; i++) {
@@ -517,7 +518,7 @@
             _extract_data: function (node_json) {
                 var data = {};
                 for (var k in node_json) {
-                    if (k == 'id' || k == 'topic' || k == 'children' || k == 'direction' || k == 'expanded') {
+                    if (k == 'id' || k == 'topic' || k == 'children' || k == 'direction' || k == 'expanded' || k == 'description') {
                         continue;
                     }
                     data[k] = node_json[k];
@@ -532,7 +533,7 @@
                 if (node_parent.isroot) {
                     d = node_json.direction == 'left' ? jm.direction.left : jm.direction.right;
                 }
-                var node = mind.add_node(node_parent, node_json.id, node_json.topic, data, null, d, node_json.expanded);
+                var node = mind.add_node(node_parent, node_json.id, node_json.topic, data, null, d, node_json.expanded, node_json.description);
                 if ('children' in node_json) {
                     var children = node_json.children;
                     for (var i = 0; i < children.length; i++) {
@@ -547,7 +548,8 @@
                 var o = {
                     id: node.id,
                     topic: node.topic,
-                    expanded: node.expanded
+                    expanded: node.expanded,
+                    description: node.description
                 };
                 if (!!node.parent && node.parent.isroot) {
                     o.direction = node.direction == jm.direction.left ? 'left' : 'right';
@@ -578,7 +580,7 @@
                 },
                 "format": "node_array",
                 "data": [
-                    { "id": "root", "topic": "Topic", "isroot": true }
+                    { "id": "root", "topic": "Topic", "isroot": true, "description": "Add" }
                 ]
             },
 
@@ -626,7 +628,7 @@
                     if ('isroot' in node_array[i] && node_array[i].isroot) {
                         var root_json = node_array[i];
                         var data = df._extract_data(root_json);
-                        mind.set_root(root_json.id, root_json.topic, data);
+                        mind.set_root(root_json.id, root_json.topic, data, root_json.description);
                         node_array.splice(i, 1);
                         return root_json.id;
                     }
@@ -649,7 +651,7 @@
                         if (!!node_direction) {
                             d = node_direction == 'left' ? jm.direction.left : jm.direction.right;
                         }
-                        mind.add_node(parentid, node_json.id, node_json.topic, data, null, d, node_json.expanded);
+                        mind.add_node(parentid, node_json.id, node_json.topic, data, null, d, node_json.expanded, node_json.description);
                         node_array.splice(i, 1);
                         extract_count++;
                         var sub_extract_count = df._extract_subnode(mind, node_json.id, node_array);
@@ -666,7 +668,7 @@
             _extract_data: function (node_json) {
                 var data = {};
                 for (var k in node_json) {
-                    if (k == 'id' || k == 'topic' || k == 'parentid' || k == 'isroot' || k == 'direction' || k == 'expanded') {
+                    if (k == 'id' || k == 'topic' || k == 'parentid' || k == 'isroot' || k == 'direction' || k == 'expanded' || k == 'description') {
                         continue;
                     }
                     data[k] = node_json[k];
@@ -685,8 +687,8 @@
                 var o = {
                     id: node.id,
                     topic: node.topic,
-                    expanded: node.expanded
-
+                    expanded: node.expanded,
+                    description: node.description
                 };
                 if (!!node.parent) {
                     o.parentid = node.parent.id;
@@ -1323,21 +1325,21 @@
             return this.mind.get_node(nodeid);
         },
         //adding note here
-        add_node: function (parent_node, nodeid, topic, data) {
+        add_node: function (parent_node, nodeid, topic, data, description) {
             if (this.get_editable()) {
                 node_counter = node_counter + 1; // id and node assign
                 node_topic_tmp = 'node\t' + node_counter;
                 node_id_tmp = 'nodeid' + node_counter;
                 topic = node_topic_tmp;
                 nodeid = node_id_tmp;
-                var node = this.mind.add_node(parent_node, nodeid, topic, data);
+                var node = this.mind.add_node(parent_node, nodeid, topic, data, description);
                 if (!!node) {
                     this.view.add_node(node);
                     this.layout.layout();
                     this.view.show(false);
                     this.view.reset_node_custom_style(node);
                     this.expand_node(parent_node);
-                    this.invoke_event_handle(jm.event_type.edit, { evt: 'add_node', data: [parent_node.id, nodeid, topic, data], node: nodeid });
+                    this.invoke_event_handle(jm.event_type.edit, { evt: 'add_node', data: [parent_node.id, nodeid, topic, data, description], node: nodeid });
                 }
                 return node;
             } else {
@@ -1346,7 +1348,7 @@
             }
         },
 
-        insert_node_before: function (node_before, nodeid, topic, data) {
+        insert_node_before: function (node_before, nodeid, topic, data, description) {
             if (this.get_editable()) {
                 var beforeid = jm.util.is_node(node_before) ? node_before.id : node_before;
                 var node = this.mind.insert_node_before(node_before, nodeid, topic, data);
@@ -1354,7 +1356,7 @@
                     this.view.add_node(node);
                     this.layout.layout();
                     this.view.show(false);
-                    this.invoke_event_handle(jm.event_type.edit, { evt: 'insert_node_before', data: [beforeid, nodeid, topic, data], node: nodeid });
+                    this.invoke_event_handle(jm.event_type.edit, { evt: 'insert_node_before', data: [beforeid, nodeid, topic, data, description], node: nodeid });
                 }
                 return node;
             } else {
@@ -1363,15 +1365,15 @@
             }
         },
 
-        insert_node_after: function (node_after, nodeid, topic, data) {
+        insert_node_after: function (node_after, nodeid, topic, data, description) {
             if (this.get_editable()) {
                 var afterid = jm.util.is_node(node_after) ? node_after.id : node_after;
-                var node = this.mind.insert_node_after(node_after, nodeid, topic, data);
+                var node = this.mind.insert_node_after(node_after, nodeid, topic, data, description);
                 if (!!node) {
                     this.view.add_node(node);
                     this.layout.layout();
                     this.view.show(false);
-                    this.invoke_event_handle(jm.event_type.edit, { evt: 'insert_node_after', data: [afterid, nodeid, topic, data], node: nodeid });
+                    this.invoke_event_handle(jm.event_type.edit, { evt: 'insert_node_after', data: [afterid, nodeid, topic, data, description], node: nodeid });
                 }
                 return node;
             } else {
@@ -1429,7 +1431,7 @@
                     this.view.update_node(node);
                     this.layout.layout();
                     this.view.show(false);
-                    this.invoke_event_handle(jm.event_type.edit, { evt: 'update_node', data: [nodeid, topic], node: nodeid });
+                    this.invoke_event_handle(jm.event_type.edit, { evt: 'update_node', data: [nodeid, topic, description], node: nodeid });
                 }
             } else {
                 logger.error('fail, this mind map is not editable');
@@ -1444,7 +1446,7 @@
                     this.view.update_node(node);
                     this.layout.layout();
                     this.view.show(false);
-                    this.invoke_event_handle(jm.event_type.edit, { evt: 'move_node', data: [nodeid, beforeid, parentid, direction], node: nodeid });
+                    this.invoke_event_handle(jm.event_type.edit, { evt: 'move_node', data: [nodeid, beforeid, parentid, direction,description], node: nodeid });
                 }
             } else {
                 logger.error('fail, this mind map is not editable');
@@ -2464,6 +2466,8 @@
                         $h(d, node.topic);
                     }
                     else {
+                        node.description = 'Add the description'
+                        console.log(node.description);
                         console.log(node_counter);
                         $h(d, node_topic_tmp);
                         
@@ -2534,6 +2538,9 @@
             }
             document.getElementById('card-title').innerHTML = node.topic;
             document.getElementById('description-box').innerHTML = this.map[node.id];
+            console.log(node.id);
+            console.log(node.topic);
+            console.log(node.description);
         },
         save_card: function(node){
             if (!!this.selected_node) {
@@ -2869,10 +2876,10 @@
             jm.util.dom.add_event($d, 'keydown', this.handler.bind(this));
 
             this.handles['addchild'] = this.handle_addchild;
-            this.handles['addbrother'] = this.handle_addbrother;
+           // this.handles['addbrother'] = this.handle_addbrother;
             this.handles['editnode'] = this.handle_editnode;
             this.handles['delnode'] = this.handle_delnode;
-            this.handles['toggle'] = this.handle_toggle;
+     //       this.handles['toggle'] = this.handle_toggle;
             this.handles['up'] = this.handle_up;
             this.handles['down'] = this.handle_down;
             this.handles['left'] = this.handle_left;
@@ -2904,7 +2911,7 @@
             if (this.jm.view.is_editing()) { return; }
             var evt = e || event;
             if (!this.opts.enable) { return true; }
-            var kc = evt.keyCode + (evt.metaKey << 13) + (evt.ctrlKey << 12) + (evt.altKey << 11) + (evt.shiftKey << 10);
+            var kc = evt.keyCode + (evt.ctrlKey << 12) + (evt.altKey << 11) + (evt.shiftKey << 10);
             if (kc in this._mapping) {
                 this._mapping[kc].call(this, this.jm, e);
             }
@@ -2921,17 +2928,7 @@
                 }
             }
         },
-        handle_addbrother: function (_jm, e) {
-            var selected_node = _jm.get_selected_node();
-            if (!!selected_node && !selected_node.isroot) {
-                var nodeid = this._newid();
-                var node = _jm.insert_node_after(selected_node, nodeid, 'New Node');
-                if (!!node) {
-                    _jm.select_node(nodeid);
-                    _jm.begin_edit(nodeid);
-                }
-            }
-        },
+
         handle_editnode: function (_jm, e) {
             var selected_node = _jm.get_selected_node();
             if (!!selected_node) {
@@ -2945,7 +2942,7 @@
                 _jm.remove_node(selected_node);
             }
         },
-        handle_toggle: function (_jm, e) {
+    /*    handle_toggle: function (_jm, e) {
             var evt = e || event;
             var selected_node = _jm.get_selected_node();
             if (!!selected_node) {
@@ -2953,7 +2950,7 @@
                 evt.stopPropagation();
                 evt.preventDefault();
             }
-        },
+        }, */
         handle_up: function (_jm, e) {
             var evt = e || event;
             var selected_node = _jm.get_selected_node();
