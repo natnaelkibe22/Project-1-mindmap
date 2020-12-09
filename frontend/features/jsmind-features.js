@@ -356,7 +356,49 @@ $(document).ready(function () {
         $(this).val("");
     });
 });
+var width=100;
+var difference=2;
+var interveralID =0;
 
+function zoomIn_scroll()
+{
+clearInterval(interveralID);
+interveralID=setInterval(stretch,10);
+}
+function zoomOut_scroll()
+{
+clearInterval(interveralID);
+interveralID=setInterval(shrink,10);
+}
+
+function stretch()
+{
+if(width<200)
+{
+width = width+difference;
+document.getElementById("img1").style.width=width;
+console.log(width);
+}
+else
+{
+clearInterval(interveralID);
+}
+
+}
+function shrink()
+{
+if(width>100)
+{
+width = width-difference;
+document.getElementById("img1").style.width=width;
+console.log(width);
+}
+else
+{
+clearInterval(interveralID);
+}
+
+}
 
 /*
 var getDescription = function() {

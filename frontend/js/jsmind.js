@@ -5,6 +5,7 @@
  * Project Home:
  *   https://github.com/hizzgdev/jsmind/
  */
+
 ; (function ($w) {
     'use strict';
     // set 'jsMind' as the library name.
@@ -1329,7 +1330,7 @@
             if (this.get_editable()) {
                 node_counter = node_counter + 1; // id and node assign
                 node_topic_tmp = 'node\t' + node_counter;
-                node_id_tmp = 'nodeid' + node_counter;
+                node_id_tmp =  Math.random().toString(36).substr(2, 6);
                 topic = node_topic_tmp;
                 nodeid = node_id_tmp;
                 var node = this.mind.add_node(parent_node, nodeid, topic, data, description);
@@ -2308,6 +2309,7 @@
     var node_counter = 0;
     var node_topic_tmp;
     var node_id_tmp;
+
     jm.view_provider.prototype = {
         init: function () {
             logger.debug('view.init');
