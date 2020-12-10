@@ -6,6 +6,7 @@ function open_empty(){
         editable:true
     }
     _jm = jsMind.show(options);
+    // _jm = jsMind.show(options,mind);
 }
 
 function open_ajax(){
@@ -19,21 +20,22 @@ function screen_shot(){
     _jm.screenshot.shootDownload();
 }
 
-function show_data(){
-    var mind_data = _jm.get_data();
+function get_nodearray_data(){
+    var mind_data = _jm.get_data('node_array');
     var mind_string = jsMind.util.json.json2string(mind_data);
     prompt_info(mind_string);
 }
 
-function save_data(){
-    var mind_data = _jm.get_data();
+function save_nodearray_file(){
+    var mind_data = _jm.get_data('node_array');
     var mind_name = mind_data.meta.name;
     var mind_str = jsMind.util.json.json2string(mind_data);
-    jsMind.util.file.save(mind_str,'text/jsmind',mind_name+'.jm');
+    jsMind.util.file.save(mind_str,'text/jsmind',mind_name+'.json');
 }
 
-function load_data(){
-    var file_input = document.getElementById('file_input');
+
+function open_nodearray(){
+    var file_input = document.getElementById('file_input_nodearray');
     var files = file_input.files;
     if(files.length > 0){
         var file_data = files[0];
@@ -194,7 +196,6 @@ var zoomOutButton = document.getElementById("zoom-out");
 function zoomIn() {
     if (_jm.view.zoomIn()) {
         zoomOutButton.disabled = false;
-        console.log('zoomin');
     } else {
         zoomInButton.disabled = true;
     };
@@ -203,9 +204,7 @@ function zoomIn() {
 function zoomOut() {
     if (_jm.view.zoomOut()) {
         zoomInButton.disabled = false;
-        console.log('zoomout');
     } else {
-        
         zoomOutButton.disabled = true;
     };
 };
@@ -259,121 +258,23 @@ function expand_all(){
     _jm.expand_all();
 }
 
-function expand_to_level2(){
-    _jm.expand_to_depth(2);
-}
-
-function expand_to_level3(){
-    _jm.expand_to_depth(3);
-}
-
 function collapse_all(){
     _jm.collapse_all();
-}
-
-
-function get_nodearray_data(){
-    var mind_data = _jm.get_data('node_array');
-    var mind_string = jsMind.util.json.json2string(mind_data);
-    prompt_info(mind_string);
-}
-
-function save_nodearray_file(){
-    var mind_data = _jm.get_data('node_array');
-    var mind_name = mind_data.meta.name;
-    var mind_str = jsMind.util.json.json2string(mind_data);
-    jsMind.util.file.save(mind_str,'text/jsmind',mind_name+'.jm');
-}
-
-function open_nodearray(){
-    var file_input = document.getElementById('file_input_nodearray');
-    var files = file_input.files;
-    if(files.length > 0){
-        var file_data = files[0];
-        jsMind.util.file.read(file_data,function(jsmind_data, jsmind_name){
-            var mind = jsMind.util.json.string2json(jsmind_data);
-            if(!!mind){
-                _jm.show(mind);
-            }else{
-                prompt_info('can not open this file as mindmap');
-            }
-        });
-    }else{
-        prompt_info('please choose a file first')
-    }
-}
-
-function get_freemind_data(){
-    var mind_data = _jm.get_data('freemind');
-    var mind_string = jsMind.util.json.json2string(mind_data);
-    alert(mind_string);
-}
-
-function save_freemind_file(){
-    var mind_data = _jm.get_data('freemind');
-    var mind_name = mind_data.meta.name || 'freemind';
-    var mind_str = mind_data.data;
-    jsMind.util.file.save(mind_str,'text/xml',mind_name+'.mm');
-}
-
-function open_freemind(){
-    var file_input = document.getElementById('file_input_freemind');
-    var files = file_input.files;
-    if(files.length > 0){
-        var file_data = files[0];
-        jsMind.util.file.read(file_data, function(freemind_data, freemind_name){
-            if(freemind_data){
-                var mind_name = freemind_name;
-                if(/.*\.mm$/.test(mind_name)){
-                    mind_name = freemind_name.substring(0,freemind_name.length-3);
-                }
-                var mind = {
-                    "meta":{
-                        "name":mind_name,
-                        "author":"hizzgdev@163.com",
-                        "version":"1.0.1"
-                    },
-                    "format":"freemind",
-                    "data":freemind_data
-                };
-                _jm.show(mind);
-            }else{
-                prompt_info('can not open this file as mindmap');
-            }
-        });
-    }else{
-        prompt_info('please choose a file first')
-    }
 }
 
 function prompt_info(msg){
     alert(msg);
 }
 
-$(document).ready(function () {
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-    $("description").focus(function() {
-        $(this).val("");
-    });
-});
-
-var width=100;
-var height = 100;
-var scale=2;
-var change =0;
-
-
-var ele = document.getElementById("jsmind_container");
+var zoomInScroll = document.getElementById("jsmind_container");
 var i = 0;
-ele.onmouseover = function zoomIn_scroll() {
+zoomInScroll.onmouseover = function zoomIn_scroll() {
 
 
         _jm.view.zoomIn();
 }
 
-ele.onmousedown = function zoomOut_scroll() {
+zoomInScroll.onmousedown = function zoomOut_scroll() {
 
         _jm.view.zoomOut();
     
