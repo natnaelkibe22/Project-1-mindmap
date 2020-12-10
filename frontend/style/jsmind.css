@@ -419,16 +419,11 @@ bottom:   110px;
 }
 #node-button{
 position: relative;
-<<<<<<< HEAD:style/jsmind.css
 left: 240px;
-=======
-left: 260px;
->>>>>>> master:frontend/style/jsmind.css
 bottom: 130px;
 }
 #node-rmv-button{
 position: relative;
-<<<<<<< HEAD:style/jsmind.css
 left: 260px;
 bottom: 130px;
 }
@@ -440,9 +435,6 @@ bottom: 130px;
 #Colnode-button{
 position: relative;
 left: 300px;
-=======
-left: 280px;
->>>>>>> master:frontend/style/jsmind.css
 bottom: 130px;
 }
 #Exnode-button{
