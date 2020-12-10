@@ -266,18 +266,12 @@ function prompt_info(msg){
     alert(msg);
 }
 
-var zoomInScroll = document.getElementById("jsmind_container");
-var i = 0;
-zoomInScroll.onmouseover = function zoomIn_scroll() {
-
-
+$('#jsmind_container').bind('mousewheel', function(event) {
+    if (event.originalEvent.wheelDelta >= 0) {
         _jm.view.zoomIn();
-}
-
-zoomInScroll.onmousedown = function zoomOut_scroll() {
-
+    }
+    else {
         _jm.view.zoomOut();
-    
-}
-
+    }
+});
 open_empty();
