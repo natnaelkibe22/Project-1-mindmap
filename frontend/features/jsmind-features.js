@@ -124,6 +124,11 @@ function add_image_node(){
     imageChooser.click();
 }
 
+
+function Upload_image(){
+    $("#description-box").pasteUploadImage();
+}
+
 function modify_node(){
     var selected_id = get_selected_nodeid();
     if(!selected_id){prompt_info('please select a node first.');return;}

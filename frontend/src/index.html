@@ -149,7 +149,7 @@
                     </header>
                     <div class="card-content">
                       <div class="content">
-                        <p class = "card-info--box" type = 'text' id = "description-box" contenteditable = false onfocus="d_input();" > Add your description...</p>
+                        <textarea  type = 'text' id = "description-box" onfocus="d_input();" style="width:100%; border: 0;" disabled> Add your description...</textarea>
                       </div>
                     </div>
                     <footer class="card-footer">
@@ -157,6 +157,8 @@
                         <i class="glyphicon glyphicon-floppy-disk" id ="card-head-icon"> Save</i></a>
                       <a type="button" name='edit-btn' class="card-footer-item" onclick="edit_card();">
                           <i class="glyphicon glyphicon-edit" id ="card-head-icon" > Edit</i></a>
+                          <a type='button' name='edit-btn' class="card-footer-item" onclick="Upload_image();">
+                            <i class="glyphicon  glyphicon-camera" id ="card-head-icon" > Upload</i></a>
                     </footer>
                   </div>
                 </div>
