@@ -274,4 +274,13 @@ $('#jsmind_container').bind('mousewheel', function(event) {
         _jm.view.zoomOut();
     }
 });
+
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+    $("description").focus(function() {
+        $(this).val("");
+    });
+});
 open_empty();
