@@ -406,6 +406,12 @@ a.article, a.article:hover {
     background:#f5fffa;
     max-width: 100%;
 }
+#jsmind_container1{
+    float:middle;
+    border:solid 1px #ccc;
+    background:#f5fffa;
+    max-width: 100%;
+}
 #zoom-inline{
 position: relative;
 left:    520px;

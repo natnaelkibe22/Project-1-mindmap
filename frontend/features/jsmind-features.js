@@ -6,7 +6,6 @@ function open_empty(){
         editable:true
     }
     _jm = jsMind.show(options);
-    // _jm = jsMind.show(options,mind);
 }
 
 function open_ajax(){
@@ -195,6 +194,7 @@ var zoomOutButton = document.getElementById("zoom-out");
 function zoomIn() {
     if (_jm.view.zoomIn()) {
         zoomOutButton.disabled = false;
+        console.log('zoomin');
     } else {
         zoomInButton.disabled = true;
     };
@@ -203,7 +203,9 @@ function zoomIn() {
 function zoomOut() {
     if (_jm.view.zoomOut()) {
         zoomInButton.disabled = false;
+        console.log('zoomout');
     } else {
+        
         zoomOutButton.disabled = true;
     };
 };
@@ -356,61 +358,25 @@ $(document).ready(function () {
         $(this).val("");
     });
 });
+
 var width=100;
-var difference=2;
-var interveralID =0;
+var height = 100;
+var scale=2;
+var change =0;
 
-function zoomIn_scroll()
-{
-clearInterval(interveralID);
-interveralID=setInterval(stretch,10);
-}
-function zoomOut_scroll()
-{
-clearInterval(interveralID);
-interveralID=setInterval(shrink,10);
-}
 
-function stretch()
-{
-if(width<200)
-{
-width = width+difference;
-document.getElementById("img1").style.width=width;
-console.log(width);
-}
-else
-{
-clearInterval(interveralID);
+var ele = document.getElementById("jsmind_container");
+var i = 0;
+ele.onmouseover = function zoomIn_scroll() {
+
+
+        _jm.view.zoomIn();
 }
 
-}
-function shrink()
-{
-if(width>100)
-{
-width = width-difference;
-document.getElementById("img1").style.width=width;
-console.log(width);
-}
-else
-{
-clearInterval(interveralID);
+ele.onmousedown = function zoomOut_scroll() {
+
+        _jm.view.zoomOut();
+    
 }
 
-}
-
-/*
-var getDescription = function() {
-    var selection = d3.select(".node.selected")[0][0];
-    if(selection){
-      var data = selection.__data__;
-
-      $("#card-title").html();
-      $("#note").val(data.top);
-    //  $("#note").html(data.description);
-    }
-    //return data.description;
-    }
-*/
 open_empty();

@@ -109,16 +109,18 @@
                 </nav>
                 
                 <div class="line"></div>
-                <div onmouseover="zoomIn_scroll()" onmouseout="zoomOut_scroll()" id ="jsmind_container" width="100"> </div>
+
+                <div id ="jsmind_container" > </div>
+
                 <div class="button" id = "zoom-inline">
                      <ul>
-                        <button id = "zoom-in" onclick= "zoomIn();" class="btn">
+                        <button id = "zoom-in" onclick= "zoomIn();" class="btn" !disabled>
                             <i id = "zoom-in" onclick= "zoomIn();" class="glyphicon glyphicon-plus">
                             </i></button>
                      </ul>
                      <ul>
-                        <button id = "zoom-in" onclick= "zoomOut();" class="btn" >
-                            <i id = "zoom-in" onclick= "zoomOut();" class="glyphicon glyphicon-minus">
+                        <button id = "zoom-out" onclick= "zoomOut();" class="btn" !disabled>
+                            <i id = "zoom-out" onclick= "zoomOut();" class="glyphicon glyphicon-minus">
                           </i></button>
                      </ul>  
                 </div>
