@@ -123,7 +123,6 @@
         this.index = iIndex;
         this.topic = sTopic;
         this.description = fDescription;
-        console.log(this.description);
         this.data = oData || {};
         this.isroot = bIsRoot;
         this.parent = oParent;
@@ -2469,8 +2468,6 @@
                     }
                     else {
                         node.description = 'Add the description'
-                        console.log(node.description);
-                        console.log(node_counter);
                         $h(d, node_topic_tmp);
                         
                     }
@@ -2539,11 +2536,9 @@
                     /* need to store child node topic to a generic name */
             }
             document.getElementById('card-title').innerHTML = node.topic;
-            document.getElementById('description-box').innerHTML = this.map[node.id];
-            console.log(node.id);
-            console.log(node.topic);
-            console.log(node.description);
+            $('#description-box').val(this.map[node.id]);
         },
+        //description-box save/edit function
         save_card: function(node){
             if (!!this.selected_node) {
                 this.selected_node._data.view.element.className =
@@ -2556,16 +2551,15 @@
                 this.clear_node_custom_style(node);
             }
             this.selected_node = node;
-            var descript_string = document.getElementById('description-box').innerHTML;
+            var descript_string = $('#description-box').val();
             var nodeid = get_selected_nodeid(this.selected_node);
             this.map[nodeid] = descript_string;
-            $('p[contenteditable="true"]').attr('contenteditable', false);
-            $('p[contenteditable="false"]').attr('contenteditable', false);
+            $('#description-box').attr('disabled', true);
 
         },
 
         edit_card: function(){
-            $('p[contenteditable="false"]').attr('contenteditable', true);
+            $('#description-box').attr("disabled", false);
         },
         d_input: function() {
             document.getElementById('description-box').innerHTML = '';

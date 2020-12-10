@@ -124,6 +124,11 @@ function add_image_node(){
     imageChooser.click();
 }
 
+
+function Upload_image(){
+    $("#description-box").pasteUploadImage();
+}
+
 function modify_node(){
     var selected_id = get_selected_nodeid();
     if(!selected_id){prompt_info('please select a node first.');return;}
@@ -266,18 +271,21 @@ function prompt_info(msg){
     alert(msg);
 }
 
-var zoomInScroll = document.getElementById("jsmind_container");
-var i = 0;
-zoomInScroll.onmouseover = function zoomIn_scroll() {
-
-
+$('#jsmind_container').bind('mousewheel', function(event) {
+    if (event.originalEvent.wheelDelta >= 0) {
         _jm.view.zoomIn();
-}
-
-zoomInScroll.onmousedown = function zoomOut_scroll() {
-
+    }
+    else {
         _jm.view.zoomOut();
-    
-}
+    }
+});
 
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+    $("description").focus(function() {
+        $(this).val("");
+    });
+});
 open_empty();

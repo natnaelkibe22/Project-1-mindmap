@@ -380,11 +380,6 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-a.download {
-    background: #fff;
-    color: #151822;
-}
-
 a.article, a.article:hover {
     background: #151822 !important;
     color: #fff !important;
@@ -406,12 +401,7 @@ a.article, a.article:hover {
     background:#f5fffa;
     max-width: 100%;
 }
-#jsmind_container1{
-    float:middle;
-    border:solid 1px #ccc;
-    background:#f5fffa;
-    max-width: 100%;
-}
+
 #zoom-inline{
 position: relative;
 left:    520px;
@@ -419,12 +409,22 @@ bottom:   110px;
 }
 #node-button{
 position: relative;
-left: 260px;
+left: 240px;
 bottom: 130px;
 }
 #node-rmv-button{
 position: relative;
+left: 260px;
+bottom: 130px;
+}
+#Exnode-button{
+position: relative;
 left: 280px;
+bottom: 130px;
+}
+#Colnode-button{
+position: relative;
+left: 300px;
 bottom: 130px;
 }
 #Exnode-button{

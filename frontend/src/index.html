@@ -53,7 +53,7 @@
                     </li>  
                     <li class="active">
                         <a href="#theme_menu" data-toggle="collapse" aria-expanded="false">
-                            <i class="glyphicon glyphicon-edit"></i> Theme </a>
+                            <i class="glyphicon glyphicon-pencil"></i> Theme </a>
                         <ul class="collapse list-unstyled"  id="theme_menu">
                             <li><a onclick="set_theme('');"> default </a></li>
                             <li><a onclick="set_theme('primary');"> primary </a></li>
@@ -109,22 +109,20 @@
                 </nav>
                 
                 <div class="line"></div>
-
-                <div id ="jsmind_container" > </div>
-
+                <div onmouseover="zoomIn_scroll()" onmouseout="zoomOut_scroll()" id ="jsmind_container" width="100"> </div>
                 <div class="button" id = "zoom-inline">
                      <ul>
-                        <button id = "zoom-in" onclick= "zoomIn();" class="btn" !disabled>
+                        <button id = "zoom-in" onclick= "zoomIn();" class="btn">
                             <i id = "zoom-in" onclick= "zoomIn();" class="glyphicon glyphicon-plus">
                             </i></button>
                      </ul>
                      <ul>
-                        <button id = "zoom-out" onclick= "zoomOut();" class="btn" !disabled>
-                            <i id = "zoom-out" onclick= "zoomOut();" class="glyphicon glyphicon-minus">
+                        <button id = "zoom-in" onclick= "zoomOut();" class="btn" >
+                            <i id = "zoom-in" onclick= "zoomOut();" class="glyphicon glyphicon-minus">
                           </i></button>
                      </ul>  
                 </div>
-                
+            <!-- Shortcut buttons -->
                 <button type="button" id="node-button" onclick="add_node();" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
                     Add a node
                   </button>
@@ -137,7 +135,7 @@
                 <button type="button" id="Colnode-button" onclick="collapse();" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
                     Collapse node
                   </button>                
-                
+                <!-- Description box -->
                 <div class="card">
                     <header class="card-head">
                       <p class="card-head-title card-head-title--editable"  id = 'card-title'>
@@ -151,7 +149,7 @@
                     </header>
                     <div class="card-content">
                       <div class="content">
-                        <p class = "card-info--box" type = 'text' id = "description-box" contenteditable = false onfocus="d_input();" > Add your description...</p>
+                        <textarea  type = 'text' id = "description-box" onfocus="d_input();" style="width:100%; border: 0;" disabled> Add your description...</textarea>
                       </div>
                     </div>
                     <footer class="card-footer">
@@ -159,6 +157,8 @@
                         <i class="glyphicon glyphicon-floppy-disk" id ="card-head-icon"> Save</i></a>
                       <a type="button" name='edit-btn' class="card-footer-item" onclick="edit_card();">
                           <i class="glyphicon glyphicon-edit" id ="card-head-icon" > Edit</i></a>
+                          <a type='button' name='edit-btn' class="card-footer-item" onclick="Upload_image();">
+                            <i class="glyphicon  glyphicon-camera" id ="card-head-icon" > Upload</i></a>
                     </footer>
                   </div>
                 </div>
