@@ -288,4 +288,25 @@ $(document).ready(function () {
         $(this).val("");
     });
 });
+
+function upload(){
+    var p=prompt("image URL:");
+    if(p)
+        formatText('InsertImage', p);
+    return false; }
+
+
+function formatText(command, option) {
+            displayImage(iframe);
+            iframe.contentWindow.focus();
+            try{
+                iframe.contentWindow.document.execCommand(command, false, option);
+            }catch(e){
+                //console.log(e)
+            }
+            iframe.contentWindow.focus();
+        };
+function displayImage(iframe) {
+            return iframe.contentWindow.document.getElementsById("card-content1")[0].innerHTML;
+ };
 open_empty();
