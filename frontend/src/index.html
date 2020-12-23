@@ -14,6 +14,7 @@
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="../style/jsmind-navbar.css">
         <link rel="stylesheet" href="../style/jsmind.css">
+        <link rel="stylesheet" href="../style/rte.css">
     </head>
     <body>
         <div class="wrapper">
@@ -147,9 +148,9 @@
                       </span>
                       </a>
                     </header>
-                    <div class="card-content">
+                    <div class="card-content" id = "card-content1">
                       <div class="content">
-                        <textarea  type = 'text' id = "description-box" onfocus="d_input();" style="width:100%; border: 0;" disabled> Add your description...</textarea>
+                        <textarea class="rte-zone"  type = 'text' id = "description-box" onfocus="d_input();" disabled> Add your description...</textarea>
                       </div>
                     </div>
                     <footer class="card-footer">
@@ -157,7 +158,7 @@
                         <i class="glyphicon glyphicon-floppy-disk" id ="card-head-icon"> Save</i></a>
                       <a type="button" name='edit-btn' class="card-footer-item" onclick="edit_card();">
                           <i class="glyphicon glyphicon-edit" id ="card-head-icon" > Edit</i></a>
-                          <a type='button' name='edit-btn' class="card-footer-item" onclick="Upload_image();">
+                          <a type='button' name='edit-btn' class="card-footer-item" id ="#Upload" onclick="upload();">
                             <i class="glyphicon  glyphicon-camera" id ="card-head-icon" > Upload</i></a>
                     </footer>
                   </div>
@@ -174,6 +175,8 @@
          <script type="text/javascript" src="../features/jsmind.shell.js"></script>
          <script type="text/javascript" src="../features/jsmind-features.js"></script>
          <script type="text/javascript" src="../js/jsmind.screenshot.js"></script>
+         <script type="text/javascript" src="../js/image-uploader.js"></script>
+         
 
     </body>
 </html>

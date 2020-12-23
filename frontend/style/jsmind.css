@@ -627,3 +627,10 @@ bottom: 130px;
   .card .media:not(:last-child) {
     margin-bottom: 0.75rem;
   }
+  #description-box {
+    width:100%;
+    height: 300px; 
+    resize: vertical; 
+    border: 0;
+
+  }
