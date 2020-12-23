@@ -289,7 +289,7 @@ $(document).ready(function () {
     });
 });
 
-function upload(){
+function upload1(){
     var p=prompt("image URL:");
     if(p)
         formatText('InsertImage', p);
@@ -309,4 +309,26 @@ function formatText(command, option) {
 function displayImage(iframe) {
             return iframe.contentWindow.document.getElementsById("card-content1")[0].innerHTML;
  };
+
+ var ImageUpload = document.getElementById('image-chooser');
+
+ImageUpload.addEventListener('change', function (event) {
+    // Read file here.
+    var reader = new FileReader();
+    reader.onloadend = (function () {
+        
+        displayImage('InsertImage', )
+    });
+    var file = ImageUpload.files[0];
+    if (file) {
+        reader.readAsDataURL(file);
+    };
+
+}, false);
+
+function upload(){
+    $('#description-box').attr("disabled", false);
+    ImageUpload.focus();
+    ImageUpload.click();
+}
 open_empty();
